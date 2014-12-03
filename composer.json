@@ -1,0 +1,27 @@
+{
+    "name": "flamecore/webtools",
+    "description": "Common tools for working with web resources",
+    "homepage": "http://www.flamecore.org",
+    "keywords": ["web", "http", "html"],
+    "license": "ISC",
+    "authors": [
+        {
+            "name": "Christian Neff",
+            "email": "christian.neff@gmail.com",
+            "homepage": "http://www.secondtruth.de",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/FlameCore/Webtools/issues",
+        "source": "https://github.com/FlameCore/Webtools"
+    },
+    "require": {
+        "php": ">=5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "FlameCore\\Webtools\\": "lib/"
+        }
+    }
+}
