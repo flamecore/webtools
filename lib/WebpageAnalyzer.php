@@ -71,7 +71,7 @@ class WebpageAnalyzer
      * Creates a WebpageAnalyzer object.
      *
      * @param string $url The URL of the webpage
-     * @throws \UnexpectedValueException if the URL could not be loaded.
+     * @throws \RuntimeException if the URL could not be loaded.
      */
     public function __construct($url)
     {
@@ -81,12 +81,7 @@ class WebpageAnalyzer
         $this->localUrl = preg_replace('#^(https?://.+)/.+#', '\1', $this->url);
 
         $http = new HttpClient();
-        $request = $http->get($this->url);
-
-        if (!$request->success)
-            throw new \UnexpectedValueException(sprintf('The URL "%s" could not be loaded.', $url));
-
-        $html = new HtmlExplorer($request->data);
+        $html = HtmlExplorer::fromWeb($url, $http);
 
         $node = $html->findFirstTag('base');
         if ($node && $href = $node->getAttribute('href'))

@@ -100,4 +100,41 @@ class HtmlExplorer
     {
         return $this->dom;
     }
+
+    /**
+     * Loads HTML from webpage.
+     *
+     * @param $url The URL of the webpage
+     * @param \FlameCore\Webtools\HttpClient $http The HttpClient instance to use (optional)
+     * @return \FlameCore\Webtools\HtmlExplorer
+     * @throws \RuntimeException if the URL could not be loaded.
+     */
+    public static function fromWeb($url, HttpClient $http = null)
+    {
+        $http = $http ?: new HttpClient();
+
+        $request = $http->get($url);
+
+        if (!$request->success)
+            throw new \RuntimeException(sprintf('The URL "%s" could not be loaded.', $url));
+
+        return new self($request->data);
+    }
+
+    /**
+     * Loads HTML from file.
+     *
+     * @param $filename The name of the file
+     * @return \FlameCore\Webtools\HtmlExplorer
+     * @throws \LogicException if the file could not be opened.
+     */
+    public static function fromFile($filename)
+    {
+        if (!is_file($filename) || !is_readable($filename))
+            throw new \LogicException(sprintf('The file "%s" does not exist or is not readable.', $filename));
+
+        $html = file_get_contents($filename);
+
+        return new self($html);
+    }
 }
