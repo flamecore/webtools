@@ -44,8 +44,8 @@ require_once 'vendor/autoload.php';
 
 Requirements
 ------------
- 
-* You must have at least PHP version 5.3 installed on your system.
+
+* You must have at least PHP version 5.4 installed on your system.
 
 
 Contributors
