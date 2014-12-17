@@ -301,12 +301,16 @@ class HttpClient
         curl_setopt($this->handle, CURLOPT_HEADER, false);
         curl_setopt($this->handle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($this->handle, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($this->handle, CURLOPT_HEADERFUNCTION, [$this, 'buffer']);
 
-        if ($data = curl_exec($this->handle)) {
+        if ($response = curl_exec($this->handle)) {
             $info = curl_getinfo($this->handle);
             if ($info['http_code'] >= 200 && $info['http_code'] < 300) {
+                $headers = $this->buffer();
+
                 $info['success'] = true;
-                $info['data'] = $data;
+                $info['headers'] = $this->parseHeaders($headers);
+                $info['data'] = $response;
             } else {
                 $info['success'] = false;
             }
@@ -318,5 +322,54 @@ class HttpClient
         }
 
         return (object) $info;
+    }
+
+    /**
+     * Parses the given HTTP headers.
+     *
+     * @param string $rawHeaders The raw HTTP headers
+     * @return array
+     */
+    protected function parseHeaders($rawHeaders)
+    {
+        $headers = array();
+
+        $lines = explode("\r\n", preg_replace('/\x0D\x0A[\x09\x20]+/', ' ', $rawHeaders));
+        foreach ($lines as $header) {
+            if (preg_match('/([^:]+): (.+)/m', $header, $match)) {
+                if (!isset($headers[$match[1]])) {
+                    $headers[$match[1]] = trim($match[2]);
+                } elseif (is_array($headers[$match[1]])) {
+                    $headers[$match[1]][] = trim($match[2]);
+                } else {
+                    $headers[$match[1]] = array($headers[$match[1]], trim($match[2]));
+                }
+            }
+        }
+
+        return $headers;
+    }
+
+    /**
+     * Buffers the line read by curl. When no handle is given, returns and clears the content of the buffer.
+     *
+     * @param resource $curl The curl handle
+     * @param string $line The current line
+     * @return int|string
+     */
+    private function buffer($curl = null, $line = null)
+    {
+        static $buffer;
+
+        if ($curl) {
+            $buffer .= $line;
+
+            return strlen($line);
+        } else {
+            $return = $buffer;
+            $buffer = '';
+
+            return $return;
+        }
     }
 }
