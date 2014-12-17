@@ -193,7 +193,7 @@ class WebpageAnalyzer
             $width = imagesx($image);
             $height = imagesy($image);
 
-            return array($width, $height);
+            return [$width, $height];
         } else {
             return false;
         }

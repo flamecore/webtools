@@ -88,6 +88,7 @@ class HtmlExplorer
     public function findFirstTag($tagName)
     {
         $nodes = $this->findTags($tagName);
+
         return $nodes->length > 0 ? $nodes->item(0) : false;
     }
 
