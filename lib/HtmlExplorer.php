@@ -47,7 +47,12 @@ class HtmlExplorer
         libxml_use_internal_errors(true);
 
         $dom = new \DOMDocument();
-        $dom->loadHTML($html);
+        $success = $dom->loadHTML($html);
+
+        if (!$success) {
+            $error = array_shift(libxml_get_errors());
+            throw new \RuntimeException(sprintf('Could not load HTML: %s at line %d column %d.', trim($error->message), $error->line, $error->column));
+        }
 
         $this->dom = $dom;
     }
