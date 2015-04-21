@@ -2,10 +2,36 @@ FlameCore Webtools
 ==================
 
 [![Latest Stable](http://img.shields.io/packagist/v/flamecore/webtools.svg)](https://packagist.org/packages/flamecore/webtools)
+[![Build Status](https://img.shields.io/travis/FlameCore/Webtools.svg)](https://travis-ci.org/FlameCore/Webtools)
 [![Code Climate](http://img.shields.io/codeclimate/github/FlameCore/Webtools.svg)](https://codeclimate.com/github/FlameCore/Webtools)
 [![License](http://img.shields.io/packagist/l/flamecore/webtools.svg)](http://www.flamecore.org/projects/webtools)
 
-This library provides common tools for working with web resources.
+This library provides common tools for working with web resources. The components are designed to be lightweight, fast and easy to use.
+
+The Webtools package was developed for our linkparser framework [Flink](https://github.com/FlameCore/Flink) and the spam-protection
+system [Gatekeeper](https://github.com/FlameCore/Gatekeeper).
+
+Usage instructions and more information can be found [in our Wiki](https://github.com/FlameCore/Webtools/wiki).
+
+
+Components
+----------
+
+* **UserAgent**
+
+    Simple and fast User Agent string parser
+
+* **WebpageAnalyzer**
+
+    Get images, title and description of a webpage
+
+* **HttpClient**
+
+    Simple and intuitive HTTP Client
+
+* **HtmlExplorer**
+
+    Convenience wrapper for DOMDocument
 
 
 Installation
@@ -18,7 +44,7 @@ Create a file called `composer.json` in your project directory and put the follo
 ```
 {
     "require": {
-        "flamecore/webtools": "~1.0"
+        "flamecore/webtools": "1.1.0"
     }
 }
 ```
