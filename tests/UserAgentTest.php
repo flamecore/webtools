@@ -30,7 +30,7 @@ use FlameCore\Webtools\UserAgent;
  */
 class UserAgentTest extends \PHPUnit_Framework_TestCase
 {
-    public function testUserAgentString()
+    public function testBrowserUserAgentString()
     {
         $userAgentString = 'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2pre) Gecko/20100116 Ubuntu/9.10 (karmic) Namoroka/3.6pre';
         $userAgent = new UserAgent($userAgentString);
@@ -40,6 +40,20 @@ class UserAgentTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Linux', $userAgent->getOperatingSystem(), '$userAgent->getOperatingSystem() works');
         $this->assertEquals('gecko', $userAgent->getBrowserEngine(), '$userAgent->getEngine() works');
         $this->assertEquals(false, $userAgent->isUnknown(), 'User agent is not unknown');
+        $this->assertEquals(false, $userAgent->isBot(), 'User agent is not a bot');
+    }
+
+    public function testBotUserAgentString()
+    {
+        $userAgentString = 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)';
+        $userAgent = new UserAgent($userAgentString);
+
+        $this->assertEquals('bingbot', $userAgent->getBrowserName(), '$userAgent->getBrowserName() works');
+        $this->assertEquals('2.0', $userAgent->getBrowserVersion(), '$userAgent->getBrowserVersion() works');
+        $this->assertEquals(null, $userAgent->getOperatingSystem(), '$userAgent->getOperatingSystem() works');
+        $this->assertEquals(null, $userAgent->getBrowserEngine(), '$userAgent->getEngine() works');
+        $this->assertEquals(false, $userAgent->isUnknown(), 'User agent is not unknown');
+        $this->assertEquals(true, $userAgent->isBot(), 'User agent is a bot');
     }
 
     public function testMalformedUserAgentString()
@@ -51,5 +65,22 @@ class UserAgentTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(null, $userAgent->getOperatingSystem(), '$userAgent->getOperatingSystem() works');
         $this->assertEquals(null, $userAgent->getBrowserEngine(), '$userAgent->getEngine() works');
         $this->assertEquals(true, $userAgent->isUnknown(), 'User agent is unknown');
+    }
+
+    public function testToArray()
+    {
+        $userAgentString = 'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2pre) Gecko/20100116 Ubuntu/9.10 (karmic) Namoroka/3.6pre';
+        $userAgent = new UserAgent($userAgentString);
+
+        $expected = array(
+            'browser_name'     => 'firefox',
+            'browser_version'  => '3.6',
+            'operating_system' => 'Linux',
+            'browser_engine'   => 'gecko'
+        );
+
+        $result = $userAgent->toArray();
+
+        $this->assertEquals($expected, $result);
     }
 }
