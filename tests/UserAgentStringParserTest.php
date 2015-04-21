@@ -183,7 +183,7 @@ class UserAgentStringParserTest extends \PHPUnit_Framework_TestCase
 
             $result = $parser->parse($string);
 
-            $this->assertEquals($expected, $result, $string.' -> '.implode(', ', $result));
+            $this->assertEquals($expected, $result, $string . PHP_EOL . '-> ' . print_r($result, true));
         }
     }
 }
