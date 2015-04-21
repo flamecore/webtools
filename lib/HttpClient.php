@@ -78,8 +78,6 @@ class HttpClient
 
     /**
      * Creates a HttpClient object.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -221,8 +219,9 @@ class HttpClient
      */
     public function setEncoding($encoding)
     {
-        if (!in_array($encoding, [self::ENCODING_IDENTITY, self::ENCODING_DEFLATE, self::ENCODING_GZIP, self::ENCODING_ALL]))
+        if (!in_array($encoding, [self::ENCODING_IDENTITY, self::ENCODING_DEFLATE, self::ENCODING_GZIP, self::ENCODING_ALL])) {
             throw new \InvalidArgumentException('The encoding must be one of: HttpClient::ENCODING_IDENTITY, HttpClient::ENCODING_DEFLATE, HttpClient::ENCODING_GZIP, HttpClient::ENCODING_ALL.');
+        }
 
         $this->encoding = $encoding;
     }
@@ -238,8 +237,9 @@ class HttpClient
     {
         $jarfile = (string) $jarfile;
 
-        if (!is_file($jarfile) && !touch($jarfile))
+        if (!is_file($jarfile) && !touch($jarfile)) {
             throw new \LogicException(sprintf('Cookie file "%s" could not be opened. Make sure that the directory is writable.', $jarfile));
+        }
 
         curl_setopt($this->handle, CURLOPT_COOKIEFILE, $jarfile);
         curl_setopt($this->handle, CURLOPT_COOKIEJAR, $jarfile);
@@ -258,11 +258,13 @@ class HttpClient
     {
         $proxy = (string) $proxy;
 
-        if (!in_array($type, [self::PROXY_HTTP, self::PROXY_SOCKS5]))
+        if (!in_array($type, [self::PROXY_HTTP, self::PROXY_SOCKS5])) {
             throw new \InvalidArgumentException('The $type parameter must be one of: HttpClient::PROXY_HTTP, HttpClient::PROXY_SOCKS5.');
+        }
 
-        if (!in_array($auth, [self::AUTH_BASIC, self::AUTH_NTLM]))
+        if (!in_array($auth, [self::AUTH_BASIC, self::AUTH_NTLM])) {
             throw new \InvalidArgumentException('The $auth parameter must be one of: HttpClient::AUTH_BASIC, HttpClient::AUTH_NTLM.');
+        }
 
         if (strpos($proxy, '@') !== false) {
             list($proxyCredentials, $proxyAddress) = explode('@', $proxy, 2);

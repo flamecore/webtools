@@ -45,7 +45,7 @@ class UserAgentStringParser
     public function parse($string = null)
     {
         // use current user agent string as default
-        if (!$string) {
+        if ($string === null) {
             $string = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null;
         }
 
@@ -88,7 +88,7 @@ class UserAgentStringParser
      * Extracts information from the user agent string.
      *
      * @param string $string The user agent string
-     * @return array The user agent information
+     * @return array Returns the user agent information.
      */
     protected function doParse($string)
     {
@@ -147,7 +147,7 @@ class UserAgentStringParser
     /**
      * Gets known browsers.
      *
-     * @return array
+     * @return string[]
      */
     protected function getKnownBrowsers()
     {
@@ -192,7 +192,7 @@ class UserAgentStringParser
     /**
      * Gets known operating systems.
      *
-     * @return array
+     * @return string[]
      */
     protected function getKnownOperatingSystems()
     {
@@ -257,7 +257,7 @@ class UserAgentStringParser
     /**
      * Gets known browser engines.
      *
-     * @return array
+     * @return string[]
      */
     protected function getKnownEngines()
     {
@@ -304,27 +304,27 @@ class UserAgentStringParser
      */
     protected function filterBrowsers(array $userAgent)
     {
-        // Google chrome has a safari like signature
-        if ('safari' === $userAgent['browser_name'] && strpos($userAgent['string'], 'chrome/')) {
+        // Google Chrome has a safari like signature
+        if ($userAgent['browser_name'] === 'safari' && strpos($userAgent['string'], 'chrome/')) {
             $userAgent['browser_name'] = 'chrome';
             $userAgent['browser_version'] = preg_replace('|.+chrome/([0-9]+(?:\.[0-9]+)?).+|', '$1', $userAgent['string']);
             return $userAgent;
         }
 
         // Safari version is not encoded "normally"
-        if ('safari' === $userAgent['browser_name'] && strpos($userAgent['string'], ' version/')) {
+        if ($userAgent['browser_name'] === 'safari' && strpos($userAgent['string'], ' version/')) {
             $userAgent['browser_version'] = preg_replace('|.+\sversion/([0-9]+(?:\.[0-9]+)?).+|', '$1', $userAgent['string']);
             return $userAgent;
         }
 
         // Opera 10.00 (and higher) version number is located at the end
-        if ('opera' === $userAgent['browser_name'] && strpos($userAgent['string'], ' version/')) {
+        if ($userAgent['browser_name'] === 'opera' && strpos($userAgent['string'], ' version/')) {
             $userAgent['browser_version'] = preg_replace('|.+\sversion/([0-9]+\.[0-9]+)\s*.*|', '$1', $userAgent['string']);
             return $userAgent;
         }
 
         // IE11 hasn't 'MSIE' in its user agent string
-        if (empty($userAgent['browser_name']) && $userAgent['browser_engine'] == 'trident' && strpos($userAgent['string'], 'rv:')) {
+        if (empty($userAgent['browser_name']) && $userAgent['browser_engine'] === 'trident' && strpos($userAgent['string'], 'rv:')) {
             $userAgent['browser_name'] = 'msie';
             $userAgent['browser_version'] = preg_replace('|.+rv:([0-9]+(?:\.[0-9]+)+).+|', '$1', $userAgent['string']);
             return $userAgent;
@@ -342,7 +342,7 @@ class UserAgentStringParser
     protected function filterBrowserEngines(array $userAgent)
     {
         // MSIE does not always declare its engine
-        if ('msie' === $userAgent['browser_name'] && empty($userAgent['browser_engine'])) {
+        if ($userAgent['browser_name'] === 'msie' && empty($userAgent['browser_engine'])) {
             $userAgent['browser_engine'] = 'trident';
             return $userAgent;
         }
