@@ -54,7 +54,8 @@ class UserAgentStringParser
 
         // run some filters to increase accuracy
         $information = $this->filterBots($information);
-        $information = $this->filterBrowsers($information);
+        $information = $this->filterBrowserNames($information);
+        $information = $this->filterBrowserVersions($information);
         $information = $this->filterBrowserEngines($information);
         $information = $this->filterOperatingSystems($information);
 
@@ -297,12 +298,12 @@ class UserAgentStringParser
     }
 
     /**
-     * Filters browsers to increase accuracy.
+     * Filters browser names to increase accuracy.
      *
      * @param array $userAgent
      * @return array
      */
-    protected function filterBrowsers(array $userAgent)
+    protected function filterBrowserNames(array $userAgent)
     {
         // Google Chrome has a safari like signature
         if ($userAgent['browser_name'] === 'safari' && strpos($userAgent['string'], 'chrome/')) {
@@ -311,6 +312,24 @@ class UserAgentStringParser
             return $userAgent;
         }
 
+        // IE11 hasn't 'MSIE' in its user agent string
+        if (empty($userAgent['browser_name']) && $userAgent['browser_engine'] === 'trident' && strpos($userAgent['string'], 'rv:')) {
+            $userAgent['browser_name'] = 'msie';
+            $userAgent['browser_version'] = preg_replace('|.+rv:([0-9]+(?:\.[0-9]+)+).+|', '$1', $userAgent['string']);
+            return $userAgent;
+        }
+
+        return $userAgent;
+    }
+
+    /**
+     * Filters browser versions to increase accuracy.
+     *
+     * @param array $userAgent
+     * @return array
+     */
+    protected function filterBrowserVersions(array $userAgent)
+    {
         // Safari version is not encoded "normally"
         if ($userAgent['browser_name'] === 'safari' && strpos($userAgent['string'], ' version/')) {
             $userAgent['browser_version'] = preg_replace('|.+\sversion/([0-9]+(?:\.[0-9]+)?).+|', '$1', $userAgent['string']);
@@ -320,13 +339,6 @@ class UserAgentStringParser
         // Opera 10.00 (and higher) version number is located at the end
         if ($userAgent['browser_name'] === 'opera' && strpos($userAgent['string'], ' version/')) {
             $userAgent['browser_version'] = preg_replace('|.+\sversion/([0-9]+\.[0-9]+)\s*.*|', '$1', $userAgent['string']);
-            return $userAgent;
-        }
-
-        // IE11 hasn't 'MSIE' in its user agent string
-        if (empty($userAgent['browser_name']) && $userAgent['browser_engine'] === 'trident' && strpos($userAgent['string'], 'rv:')) {
-            $userAgent['browser_name'] = 'msie';
-            $userAgent['browser_version'] = preg_replace('|.+rv:([0-9]+(?:\.[0-9]+)+).+|', '$1', $userAgent['string']);
             return $userAgent;
         }
 
