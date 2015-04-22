@@ -16,7 +16,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *
  * @package  FlameCore\Webtools
- * @version  1.1
+ * @version  1.2
  * @link     http://www.flamecore.org
  * @license  ISC License <http://opensource.org/licenses/ISC>
  */
