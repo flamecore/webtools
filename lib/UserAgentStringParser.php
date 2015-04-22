@@ -168,6 +168,7 @@ class UserAgentStringParser
             'bingbot',
             'msnbot',
             'yahoobot',
+            'yandex\w+',
             'facebookbot'
         );
     }
@@ -291,6 +292,11 @@ class UserAgentStringParser
         // Yahoo bot has a special user agent string
         if ($userAgent['browser_name'] === null && strpos($userAgent['string'], 'yahoo! slurp')) {
             $userAgent['browser_name'] = 'yahoobot';
+            return $userAgent;
+        }
+
+        if (strpos($userAgent['string'], 'yandex')) {
+            $userAgent['browser_name'] = 'yandexbot';
             return $userAgent;
         }
 
