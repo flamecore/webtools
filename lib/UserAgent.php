@@ -263,6 +263,7 @@ class UserAgent
             'bingbot',
             'msnbot',
             'yahoobot',
+            'yandexbot',
             'facebookbot'
         );
     }
