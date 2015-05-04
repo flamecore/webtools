@@ -87,7 +87,11 @@ class UserAgentStringParserTest extends \PHPUnit_Framework_TestCase
 
             // IE 11 Windows
             'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko'
-            => array('msie', '11.0', 'Windows 7', 'trident')
+            => array('msie', '11.0', 'Windows 7', 'trident'),
+
+            // Edge (Windows 10)
+            'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36 Edge/12.0'
+            => array('edge', '12.0', 'Windows 10', 'webkit')
         );
 
         $this->doTest($testData);

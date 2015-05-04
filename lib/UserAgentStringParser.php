@@ -161,6 +161,7 @@ class UserAgentStringParser
             'netscape',
             'konqueror',
             'gecko',
+            'edge',
             'chrome',
             'iphone',
             'applewebkit',
