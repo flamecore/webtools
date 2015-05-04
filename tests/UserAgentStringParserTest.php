@@ -42,8 +42,8 @@ class UserAgentStringParserTest extends \PHPUnit_Framework_TestCase
             => array('firefox', '3.6', 'Mac OS X', 'gecko'),
 
             // Chrome Mac
-            'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_2; fr-fr) AppleWebKit/531.21.8 (KHTML, like Gecko) Version/4.0.4 Safari/531.21.10'
-            => array('chrome', '4.0', 'Mac OS X', 'webkit'),
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.124 Safari/537.36'
+            => array('chrome', '37.0', 'Mac OS X', 'webkit'),
 
             // Safari Mac
             'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_2; fr-fr) AppleWebKit/531.21.8 (KHTML, like Gecko) Version/4.0.4 Safari/531.21.10'
@@ -70,8 +70,8 @@ class UserAgentStringParserTest extends \PHPUnit_Framework_TestCase
             => array('firefox', '3.5', 'Mac OS X', 'gecko'),
 
             // Chrome Linux
-            'Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/532.5 (KHTML, like Gecko) Chrome/4.0.249.43 Safari/532.5'
-            => array('chrome', '4.0', 'Linux', 'webkit'),
+            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36'
+            => array('chrome', '41.0', 'Linux', 'webkit'),
 
             // Minefield Mac
             'Gecko 20100113Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.3a1pre) Gecko/20100113 Minefield/3.7a1pre'
