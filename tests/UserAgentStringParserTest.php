@@ -155,6 +155,10 @@ class UserAgentStringParserTest extends \PHPUnit_Framework_TestCase
             'Mozilla/5.0 (compatible; YandexBrot/3.0; +http://yandex.com/bots)'
             => array('yandexbot', '3.0', null, null),
 
+            // Baidu Bot
+            'Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)'
+            => array('baidubot', '2.0', null, null),
+
             // Facebook
             'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)'
             => array('facebookbot', '1.1', null, null),
