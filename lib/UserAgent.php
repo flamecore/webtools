@@ -264,6 +264,7 @@ class UserAgent
             'msnbot',
             'yahoobot',
             'yandexbot',
+            'baidubot',
             'facebookbot'
         );
     }

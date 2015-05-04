@@ -169,6 +169,7 @@ class UserAgentStringParser
             'msnbot',
             'yahoobot',
             'yandex\w+',
+            'baiduspider\w*',
             'facebookbot'
         );
     }
@@ -295,8 +296,15 @@ class UserAgentStringParser
             return $userAgent;
         }
 
+        // Yandex Bot
         if (strpos($userAgent['string'], 'yandex')) {
             $userAgent['browser_name'] = 'yandexbot';
+            return $userAgent;
+        }
+
+        // Baidu Bot
+        if (strpos($userAgent['string'], 'baiduspider')) {
+            $userAgent['browser_name'] = 'baidubot';
             return $userAgent;
         }
 
