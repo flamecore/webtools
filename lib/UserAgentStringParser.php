@@ -200,11 +200,12 @@ class UserAgentStringParser
     protected function getKnownOperatingSystems()
     {
         return array(
+            'Windows 10',
+            'Windows 8.1',
             'Windows 8',
             'Windows 7',
             'Windows Vista',
             'Windows Server 2003/XP x64',
-            'Windows XP',
             'Windows XP',
             'Windows 2000',
             'Windows ME',
@@ -233,6 +234,8 @@ class UserAgentStringParser
     protected function getKnownOperatingSystemAliases()
     {
         return array(
+            'windows nt 10.0' => 'Windows 10',
+            'windows nt 6.3' => 'Windows 8.1',
             'windows nt 6.2' => 'Windows 8',
             'windows nt 6.1' => 'Windows 7',
             'windows nt 6.0' => 'Windows Vista',
