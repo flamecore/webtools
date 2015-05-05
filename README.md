@@ -3,7 +3,8 @@ FlameCore Webtools
 
 [![Latest Stable](http://img.shields.io/packagist/v/flamecore/webtools.svg)](https://packagist.org/packages/flamecore/webtools)
 [![Build Status](https://img.shields.io/travis/FlameCore/Webtools.svg)](https://travis-ci.org/FlameCore/Webtools)
-[![Code Climate](http://img.shields.io/codeclimate/github/FlameCore/Webtools.svg)](https://codeclimate.com/github/FlameCore/Webtools)
+[![Scrutinizer](http://img.shields.io/scrutinizer/g/FlameCore/Webtools.svg)](https://scrutinizer-ci.com/g/FlameCore/Webtools)
+[![Coverage](http://img.shields.io/codeclimate/coverage/github/FlameCore/Webtools.svg)](https://codeclimate.com/github/FlameCore/Webtools/coverage)
 [![License](http://img.shields.io/packagist/l/flamecore/webtools.svg)](http://www.flamecore.org/projects/webtools)
 
 This library provides common tools for working with web resources. The components are designed to be lightweight, fast and easy to use.
@@ -44,7 +45,7 @@ Create a file called `composer.json` in your project directory and put the follo
 ```
 {
     "require": {
-        "flamecore/webtools": "1.2.0"
+        "flamecore/webtools": "1.2.*"
     }
 }
 ```
