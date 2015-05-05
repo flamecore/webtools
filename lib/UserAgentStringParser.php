@@ -35,12 +35,13 @@ class UserAgentStringParser
      * Parses a user agent string.
      *
      * @param string $string The user agent string (Default: `$_SERVER['HTTP_USER_AGENT']`)
-     * @return array The user agent information:
+     * @return array Returns the user agent information:
+     *
      *   - `string`:           The original user agent string
-     *   - `browser_name`:     The browser name, e.g. `chrome`
-     *   - `browser_version`:  The browser version, e.g. `3.6`
-     *   - `browser_engine`:   The browser engine, e.g. `webkit`
-     *   - `operating_system`: The operating system, e.g. `linux`
+     *   - `browser_name`:     The browser name, e.g. `"chrome"`
+     *   - `browser_version`:  The browser version, e.g. `"3.6"`
+     *   - `browser_engine`:   The browser engine, e.g. `"webkit"`
+     *   - `operating_system`: The operating system, e.g. `"linux"`
      */
     public function parse($string = null)
     {
@@ -66,7 +67,7 @@ class UserAgentStringParser
      * Make user agent string lowercase, and replace browser aliases.
      *
      * @param string $string The dirty user agent string
-     * @return string The clean user agent string
+     * @return string Returns the clean user agent string.
      */
     public function cleanUserAgentString($string)
     {
@@ -183,12 +184,12 @@ class UserAgentStringParser
     protected function getKnownBrowserAliases()
     {
         return array(
-            'shiretoko'           => 'firefox',
-            'namoroka'            => 'firefox',
-            'shredder'            => 'firefox',
-            'minefield'           => 'firefox',
-            'granparadiso'        => 'firefox',
-            'iceweasel'           => 'firefox',
+            'shiretoko' => 'firefox',
+            'namoroka' => 'firefox',
+            'shredder' => 'firefox',
+            'minefield' => 'firefox',
+            'granparadiso' => 'firefox',
+            'iceweasel' => 'firefox',
             'facebookexternalhit' => 'facebookbot'
         );
     }
@@ -242,22 +243,22 @@ class UserAgentStringParser
             'windows nt 6.0' => 'Windows Vista',
             'windows nt 5.2' => 'Windows Server 2003/XP x64',
             'windows nt 5.1' => 'Windows XP',
-            'windows xp'     => 'Windows XP',
+            'windows xp' => 'Windows XP',
             'windows nt 5.0' => 'Windows 2000',
-            'windows me'     => 'Windows ME',
-            'win98'          => 'Windows 98',
-            'win95'          => 'Windows 95',
-            'win16'          => 'Windows 3.11',
-            'mac os x'       => 'Mac OS X',
-            'mac_powerpc'    => 'Mac OS 9',
-            'ubuntu'         => 'Ubuntu',
-            'iphone'         => 'iPhone',
-            'ipod'           => 'iPod',
-            'ipad'           => 'iPad',
-            'android'        => 'Android',
-            'blackberry'     => 'BlackBerry',
-            'webos'          => 'Mobile',
-            'linux'          => 'Linux'
+            'windows me' => 'Windows ME',
+            'win98' => 'Windows 98',
+            'win95' => 'Windows 95',
+            'win16' => 'Windows 3.11',
+            'mac os x' => 'Mac OS X',
+            'mac_powerpc' => 'Mac OS 9',
+            'ubuntu' => 'Ubuntu',
+            'iphone' => 'iPhone',
+            'ipod' => 'iPod',
+            'ipad' => 'iPad',
+            'android' => 'Android',
+            'blackberry' => 'BlackBerry',
+            'webos' => 'Mobile',
+            'linux' => 'Linux'
         );
     }
 
@@ -289,8 +290,8 @@ class UserAgentStringParser
     /**
      * Filters bots to increase accuracy.
      *
-     * @param array $userAgent
-     * @return array
+     * @param array $userAgent The user agent information
+     * @return array Returns the updated user agent information.
      */
     protected function filterBots(array $userAgent)
     {
@@ -318,8 +319,8 @@ class UserAgentStringParser
     /**
      * Filters browser names to increase accuracy.
      *
-     * @param array $userAgent
-     * @return array
+     * @param array $userAgent The user agent information
+     * @return array Returns the updated user agent information.
      */
     protected function filterBrowserNames(array $userAgent)
     {
@@ -343,8 +344,8 @@ class UserAgentStringParser
     /**
      * Filters browser versions to increase accuracy.
      *
-     * @param array $userAgent
-     * @return array
+     * @param array $userAgent The user agent information
+     * @return array Returns the updated user agent information.
      */
     protected function filterBrowserVersions(array $userAgent)
     {
@@ -366,8 +367,8 @@ class UserAgentStringParser
     /**
      * Filters browser engines to increase accuracy.
      *
-     * @param array $userAgent
-     * @return array
+     * @param array $userAgent The user agent information
+     * @return array Returns the updated user agent information.
      */
     protected function filterBrowserEngines(array $userAgent)
     {
@@ -383,8 +384,8 @@ class UserAgentStringParser
     /**
      * Filters operating systems to increase accuracy.
      *
-     * @param array $userAgent
-     * @return array
+     * @param array $userAgent The user agent information
+     * @return array Returns the updated user agent information.
      */
     protected function filterOperatingSystems(array $userAgent)
     {
