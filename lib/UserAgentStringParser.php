@@ -163,6 +163,7 @@ class UserAgentStringParser
             'konqueror',
             'gecko',
             'edge',
+            'lynx',
             'chrome',
             'iphone',
             'applewebkit',
