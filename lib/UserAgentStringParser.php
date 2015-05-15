@@ -274,7 +274,8 @@ class UserAgentStringParser
             'gecko',
             'webkit',
             'trident',
-            'presto'
+            'presto',
+            'khtml'
         );
     }
 
