@@ -167,6 +167,7 @@ class UserAgentStringParser
             'chrome',
             'iphone',
             'yabrowser',
+            'maxthon',
             'applewebkit',
             'googlebot',
             'bingbot',
@@ -332,6 +333,10 @@ class UserAgentStringParser
             if (strpos($userAgent['string'], 'yabrowser/')) {
                 $userAgent['browser_name'] = 'yabrowser';
                 $userAgent['browser_version'] = preg_replace('|.+yabrowser/([0-9]+(?:\.[0-9]+)?).+|', '$1', $userAgent['string']);
+                return $userAgent;
+            } elseif (strpos($userAgent['string'], 'maxthon/')) {
+                $userAgent['browser_name'] = 'maxthon';
+                $userAgent['browser_version'] = preg_replace('|.+maxthon/([0-9]+(?:\.[0-9]+)?).+|', '$1', $userAgent['string']);
                 return $userAgent;
             } elseif (strpos($userAgent['string'], 'chrome/')) {
                 $userAgent['browser_name'] = 'chrome';
