@@ -49,6 +49,10 @@ class UserAgentStringParserTest extends \PHPUnit_Framework_TestCase
             'Opera/9.80 (Windows NT 5.1; U; en) Presto/2.2.15 Version/10.10'
             => array('opera', '10.10', 'Windows XP', 'presto'),
 
+            // Opera 15 Windows
+            'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.52 Safari/537.36 OPR/15.0.1147.100'
+            => array('opera', '15.0', 'Windows 7', 'webkit'),
+
             // Konqueror
             'Mozilla/5.0 (compatible; Konqueror/4.4; Linux) KHTML/4.4.1 (like Gecko) Fedora/4.4.1-1.fc12'
             => array('konqueror', '4.4', 'Linux', 'khtml'),

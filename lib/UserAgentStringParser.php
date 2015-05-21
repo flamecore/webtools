@@ -183,6 +183,7 @@ class UserAgentStringParser
     protected function getKnownBrowserAliases()
     {
         return array(
+            'opr' => 'opera',
             'shiretoko' => 'firefox',
             'namoroka' => 'firefox',
             'shredder' => 'firefox',
