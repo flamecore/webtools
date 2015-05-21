@@ -166,6 +166,7 @@ class UserAgentStringParser
             'lynx',
             'chrome',
             'iphone',
+            'yabrowser',
             'applewebkit',
             'googlebot',
             'bingbot',
@@ -326,11 +327,17 @@ class UserAgentStringParser
      */
     protected function filterBrowserNames(array $userAgent)
     {
-        // Google Chrome has a safari like signature
-        if ($userAgent['browser_name'] === 'safari' && strpos($userAgent['string'], 'chrome/')) {
-            $userAgent['browser_name'] = 'chrome';
-            $userAgent['browser_version'] = preg_replace('|.+chrome/([0-9]+(?:\.[0-9]+)?).+|', '$1', $userAgent['string']);
-            return $userAgent;
+        // Google Chrome and Yandex.Browser have a safari like signature
+        if ($userAgent['browser_name'] === 'safari') {
+            if (strpos($userAgent['string'], 'yabrowser/')) {
+                $userAgent['browser_name'] = 'yabrowser';
+                $userAgent['browser_version'] = preg_replace('|.+yabrowser/([0-9]+(?:\.[0-9]+)?).+|', '$1', $userAgent['string']);
+                return $userAgent;
+            } elseif (strpos($userAgent['string'], 'chrome/')) {
+                $userAgent['browser_name'] = 'chrome';
+                $userAgent['browser_version'] = preg_replace('|.+chrome/([0-9]+(?:\.[0-9]+)?).+|', '$1', $userAgent['string']);
+                return $userAgent;
+            }
         }
 
         // IE11 hasn't 'MSIE' in its user agent string
