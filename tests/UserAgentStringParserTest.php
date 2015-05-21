@@ -207,8 +207,11 @@ class UserAgentStringParserTest extends \PHPUnit_Framework_TestCase
     {
         $parser = new UserAgentStringParser();
 
-        foreach($testData as $string => $data)
-        {
+        $i = 0;
+
+        foreach ($testData as $string => $data) {
+            $i++;
+
             $expected = array(
                 'string'           => $parser->cleanUserAgentString($string),
                 'browser_name'     => $data[0],
@@ -219,7 +222,7 @@ class UserAgentStringParserTest extends \PHPUnit_Framework_TestCase
 
             $result = $parser->parse($string);
 
-            $this->assertEquals($expected, $result, "User Agent: $string");
+            $this->assertEquals($expected, $result, "User Agent #$i:" . PHP_EOL . "  $string");
         }
     }
 }
