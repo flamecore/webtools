@@ -157,18 +157,14 @@ class UserAgentStringParser
             'msie',
             'firefox',
             'safari',
-            'webkit',
             'opera',
             'netscape',
             'konqueror',
-            'gecko',
             'edge',
             'lynx',
             'chrome',
-            'iphone',
             'yabrowser',
             'maxthon',
-            'applewebkit',
             'googlebot',
             'bingbot',
             'msnbot',
@@ -306,13 +302,13 @@ class UserAgentStringParser
         }
 
         // Yandex Bot
-        if (strpos($userAgent['string'], 'yandex')) {
+        if (substr($userAgent['browser_name'], 0, 6) == 'yandex') {
             $userAgent['browser_name'] = 'yandexbot';
             return $userAgent;
         }
 
         // Baidu Bot
-        if (strpos($userAgent['string'], 'baiduspider')) {
+        if (substr($userAgent['browser_name'], 0, 11) == 'baiduspider') {
             $userAgent['browser_name'] = 'baidubot';
             return $userAgent;
         }
@@ -328,7 +324,7 @@ class UserAgentStringParser
      */
     protected function filterBrowserNames(array $userAgent)
     {
-        // Google Chrome and Yandex.Browser have a safari like signature
+        // Many browsers have a safari like signature
         if ($userAgent['browser_name'] === 'safari') {
             if (strpos($userAgent['string'], 'yabrowser/')) {
                 $userAgent['browser_name'] = 'yabrowser';
