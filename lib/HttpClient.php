@@ -53,7 +53,7 @@ class HttpClient
      *
      * @var string
      */
-    protected $useragent = 'Mozilla/5.0 (compatible; FlameCore-HttpClient/0.1)';
+    protected $useragent = 'Mozilla/5.0 (compatible; FlameCore Webtools/1.2)';
 
     /**
      * The timeout in seconds
@@ -84,7 +84,7 @@ class HttpClient
         $this->handle = curl_init();
 
         $this->headers = array(
-            'Accept' => 'text/html, application/xhtml+xml, application/xml',
+            'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Charset' => 'UTF-8',
             'Connection' => 'Keep-Alive',
             'Content-Type' => 'application/x-www-form-urlencoded; charset=UTF-8'
