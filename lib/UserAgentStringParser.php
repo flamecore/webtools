@@ -124,20 +124,24 @@ class UserAgentStringParser
         }
 
         // Find operating system
-        $pattern = '#'.join('|', $this->getKnownOperatingSystems()).'#';
+        foreach ($this->getKnownOperatingSystems() as $name) {
+            $pattern = '#(?<!like )('.$name.')#';
 
-        if (preg_match($pattern, $userAgent['string'], $match)) {
-            if (isset($match[0])) {
-                $userAgent['operating_system'] = $match[0];
+            if (preg_match($pattern, $userAgent['string'], $matches)) {
+                $userAgent['operating_system'] = $matches[1];
+
+                break;
             }
         }
 
         // Find browser engine
-        $pattern = '#'.join('|', $this->getKnownEngines()).'#';
+        foreach ($this->getKnownEngines() as $name) {
+            $pattern = '#(?<!like )('.$name.')#';
 
-        if (preg_match($pattern, $userAgent['string'], $match)) {
-            if (isset($match[0])) {
-                $userAgent['browser_engine'] = $match[0];
+            if (preg_match($pattern, $userAgent['string'], $matches)) {
+                $userAgent['browser_engine'] = $matches[1];
+
+                break;
             }
         }
 
