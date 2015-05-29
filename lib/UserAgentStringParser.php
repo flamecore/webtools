@@ -106,27 +106,25 @@ class UserAgentStringParser
             return $userAgent;
         }
 
-        // Build regex that matches phrases for known browsers (e.g. "Firefox/2.0" or "MSIE 6.0").
-        // This only matches the major and minor version numbers (e.g. "2.0.0.6" is parsed as simply "2.0").
-        $pattern = '#(' . join('|', $this->getKnownBrowsers()) . ')[/ ]+([0-9]+(?:\.[0-9]+)?)#';
+        // Find the right name/version phrase (or return empty array if none found)
+        foreach ($this->getKnownBrowsers() as $browser) {
+            // Build regex that matches phrases for known browsers (e.g. "Firefox/2.0" or "MSIE 6.0").
+            // This only matches the major and minor version numbers (e.g. "2.0.0.6" is parsed as simply "2.0").
+            $pattern = '#('.$browser.')[/ ]+([0-9]+(?:\.[0-9]+)?)#';
 
-        // Find all phrases (or return empty array if none found)
-        if (preg_match_all($pattern, $userAgent['string'], $matches)) {
-            // Since some UAs have more than one phrase (e.g Firefox has a Gecko phrase, Opera 7,8 has a MSIE phrase),
-            // use the last one found (the right-most one in the UA). That's usually the most correct.
-            $i = count($matches[1]) - 1;
+            if (preg_match($pattern, $userAgent['string'], $matches)) {
+                $userAgent['browser_name'] = $matches[1];
 
-            if (isset($matches[1][$i])) {
-                $userAgent['browser_name'] = $matches[1][$i];
-            }
+                if (isset($matches[1])) {
+                    $userAgent['browser_version'] = $matches[2];
+                }
 
-            if (isset($matches[2][$i])) {
-                $userAgent['browser_version'] = $matches[2][$i];
+                break;
             }
         }
 
         // Find operating system
-        $pattern = '#' . join('|', $this->getKnownOperatingSystems()) . '#';
+        $pattern = '#'.join('|', $this->getKnownOperatingSystems()).'#';
 
         if (preg_match($pattern, $userAgent['string'], $match)) {
             if (isset($match[0])) {
@@ -135,7 +133,7 @@ class UserAgentStringParser
         }
 
         // Find browser engine
-        $pattern = '#' . join('|', $this->getKnownEngines()) . '#';
+        $pattern = '#'.join('|', $this->getKnownEngines()).'#';
 
         if (preg_match($pattern, $userAgent['string'], $match)) {
             if (isset($match[0])) {
@@ -147,24 +145,24 @@ class UserAgentStringParser
     }
 
     /**
-     * Gets known browsers.
+     * Gets known browsers. Since some UAs have more than one phrase we use an ordered array to define the precedence.
      *
      * @return string[]
      */
     protected function getKnownBrowsers()
     {
         return array(
-            'msie',
             'firefox',
-            'safari',
             'opera',
-            'netscape',
-            'konqueror',
             'edge',
-            'lynx',
-            'chrome',
             'yabrowser',
             'maxthon',
+            'msie',
+            'chrome',
+            'safari',
+            'konqueror',
+            'netscape',
+            'lynx',
             'googlebot',
             'bingbot',
             'msnbot',
@@ -184,12 +182,12 @@ class UserAgentStringParser
     {
         return array(
             'opr' => 'opera',
+            'minefield' => 'firefox',
+            'iceweasel' => 'firefox',
             'shiretoko' => 'firefox',
             'namoroka' => 'firefox',
             'shredder' => 'firefox',
-            'minefield' => 'firefox',
             'granparadiso' => 'firefox',
-            'iceweasel' => 'firefox',
             'facebookexternalhit' => 'facebookbot'
         );
     }
@@ -325,23 +323,6 @@ class UserAgentStringParser
      */
     protected function filterBrowserNames(array $userAgent)
     {
-        // Many browsers have a safari like signature
-        if ($userAgent['browser_name'] === 'safari') {
-            if (strpos($userAgent['string'], 'yabrowser/')) {
-                $userAgent['browser_name'] = 'yabrowser';
-                $userAgent['browser_version'] = preg_replace('|.+yabrowser/([0-9]+(?:\.[0-9]+)?).+|', '$1', $userAgent['string']);
-                return $userAgent;
-            } elseif (strpos($userAgent['string'], 'maxthon/')) {
-                $userAgent['browser_name'] = 'maxthon';
-                $userAgent['browser_version'] = preg_replace('|.+maxthon/([0-9]+(?:\.[0-9]+)?).+|', '$1', $userAgent['string']);
-                return $userAgent;
-            } elseif (strpos($userAgent['string'], 'chrome/')) {
-                $userAgent['browser_name'] = 'chrome';
-                $userAgent['browser_version'] = preg_replace('|.+chrome/([0-9]+(?:\.[0-9]+)?).+|', '$1', $userAgent['string']);
-                return $userAgent;
-            }
-        }
-
         // IE11 hasn't 'MSIE' in its user agent string
         if (empty($userAgent['browser_name']) && $userAgent['browser_engine'] === 'trident' && strpos($userAgent['string'], 'rv:')) {
             $userAgent['browser_name'] = 'msie';
