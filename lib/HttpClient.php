@@ -134,6 +134,66 @@ class HttpClient
     }
 
     /**
+     * Executes a PUT request.
+     *
+     * @param string $url The URL to make the request to
+     * @param array|string $data The full data to post in the operation
+     * @param array $headers Optional extra headers
+     * @return object Returns an object containing the response information.
+     */
+    public function put($url, $data, array $headers = array())
+    {
+        curl_reset($this->handle);
+        curl_setopt($this->handle, CURLOPT_CUSTOMREQUEST, 'PUT');
+
+        $fields = is_array($data) ? http_build_query($data) : $data;
+        curl_setopt($this->handle, CURLOPT_POSTFIELDS, $fields);
+
+        $headers = array_replace($headers, ['Content-Length' => strlen($fields)]);
+        return $this->execute($url, $headers);
+    }
+
+    /**
+     * Executes a PUT request using a file.
+     *
+     * @param string $url The URL to make the request to
+     * @param string $file The file that the transfer should be read from when uploading
+     * @param array $headers Optional extra headers
+     * @return object Returns an object containing the response information.
+     */
+    public function putFile($url, $file, array $headers = array())
+    {
+        $file = (string) $file;
+
+        if (!is_file($file)) {
+            throw new \LogicException(sprintf('File "%s" could not be opened.', $file));
+        }
+
+        curl_reset($this->handle);
+        curl_setopt($this->handle, CURLOPT_PUT, true);
+        curl_setopt($this->handle, CURLOPT_INFILE, $file);
+        curl_setopt($this->handle, CURLOPT_INFILESIZE, filesize($file));
+
+        return $this->execute($url, $headers);
+    }
+
+    /**
+     * Executes a custom request.
+     *
+     * @param string $method
+     * @param string $url The URL to make the request to
+     * @param array $headers Optional extra headers
+     * @return object Returns an object containing the response information.
+     */
+    public function request($method, $url, array $headers = array())
+    {
+        curl_reset($this->handle);
+        curl_setopt($this->handle, CURLOPT_CUSTOMREQUEST, $method);
+
+        return $this->execute($url, $headers);
+    }
+
+    /**
      * Gets all defined headers.
      *
      * @return array Returns the headers.
