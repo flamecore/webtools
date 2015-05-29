@@ -198,6 +198,16 @@ class UserAgent
     }
 
     /**
+     * Tells whether this user agent is a known real browser.
+     *
+     * @return bool Returns TRUE if this user agent is a real browser, FALSE otherwise.
+     */
+    public function isRealBrowser()
+    {
+        return in_array($this->getBrowserName(), $this->getKnownRealBrowsers());
+    }
+
+    /**
      * Tells whether this user agent is a known bot/crawler.
      *
      * @return bool Returns TRUE if this user agent is a bot, FALSE otherwise.
@@ -249,6 +259,28 @@ class UserAgent
         $this->setBrowserVersion($data['browser_version']);
         $this->setBrowserEngine($data['browser_engine']);
         $this->setOperatingSystem($data['operating_system']);
+    }
+
+    /**
+     * Returns an array of strings identifying known real browsers.
+     *
+     * @return array
+     */
+    protected function getKnownRealBrowsers()
+    {
+        return array(
+            'firefox',
+            'chrome',
+            'msie',
+            'opera',
+            'safari',
+            'edge',
+            'yabrowser',
+            'maxthon',
+            'konqueror',
+            'netscape',
+            'lynx'
+        );
     }
 
     /**
