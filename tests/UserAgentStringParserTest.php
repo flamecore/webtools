@@ -107,7 +107,7 @@ class UserAgentStringParserTest extends \PHPUnit_Framework_TestCase
 
             // Namoroka Ubuntu
             'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2pre) Gecko/20100116 Ubuntu/9.10 (karmic) Namoroka/3.6pre'
-            => array('firefox', '3.6', 'Linux', 'gecko'),
+            => array('firefox', '3.6', 'Ubuntu', 'gecko'),
 
             // Namoroka Mac
             'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2) Gecko/20100105 Firefox/3.6'

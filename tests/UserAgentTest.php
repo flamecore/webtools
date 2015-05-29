@@ -32,13 +32,13 @@ class UserAgentTest extends \PHPUnit_Framework_TestCase
 {
     public function testBrowserUserAgentString()
     {
-        $userAgentString = 'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2pre) Gecko/20100116 Ubuntu/9.10 (karmic) Namoroka/3.6pre';
+        $userAgentString = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36';
         $userAgent = new UserAgent($userAgentString);
 
-        $this->assertEquals('firefox', $userAgent->getBrowserName(), 'Browser: $userAgent->getBrowserName() works');
-        $this->assertEquals('3.6', $userAgent->getBrowserVersion(), 'Browser: $userAgent->getBrowserVersion() works');
+        $this->assertEquals('chrome', $userAgent->getBrowserName(), 'Browser: $userAgent->getBrowserName() works');
+        $this->assertEquals('41.0', $userAgent->getBrowserVersion(), 'Browser: $userAgent->getBrowserVersion() works');
         $this->assertEquals('Linux', $userAgent->getOperatingSystem(), 'Browser: $userAgent->getOperatingSystem() works');
-        $this->assertEquals('gecko', $userAgent->getBrowserEngine(), 'Browser: $userAgent->getBrowserEngine() works');
+        $this->assertEquals('webkit', $userAgent->getBrowserEngine(), 'Browser: $userAgent->getBrowserEngine() works');
         $this->assertEquals(false, $userAgent->isUnknown(), 'Browser: User agent is not unknown');
         $this->assertEquals(false, $userAgent->isBot(), 'Browser: User agent is not a bot');
     }
@@ -70,14 +70,14 @@ class UserAgentTest extends \PHPUnit_Framework_TestCase
 
     public function testToArray()
     {
-        $userAgentString = 'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2pre) Gecko/20100116 Ubuntu/9.10 (karmic) Namoroka/3.6pre';
+        $userAgentString = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36';
         $userAgent = new UserAgent($userAgentString);
 
         $expected = array(
-            'browser_name'     => 'firefox',
-            'browser_version'  => '3.6',
+            'browser_name'     => 'chrome',
+            'browser_version'  => '41.0',
             'operating_system' => 'Linux',
-            'browser_engine'   => 'gecko'
+            'browser_engine'   => 'webkit'
         );
 
         $result = $userAgent->toArray();
