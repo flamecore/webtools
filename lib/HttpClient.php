@@ -180,7 +180,7 @@ class HttpClient
     /**
      * Executes a custom request.
      *
-     * @param string $method
+     * @param string $method The custom request method verb
      * @param string $url The URL to make the request to
      * @param array $headers Optional extra headers
      * @return object Returns an object containing the response information.
@@ -277,7 +277,7 @@ class HttpClient
     /**
      * Sets the encoding.
      *
-     * @param string $encoding The encoding to use. This can be any of the HttpClient::ENCODING_* constants.
+     * @param string $encoding The encoding to use. This can be any of the `HttpClient::ENCODING_*` constants.
      */
     public function setEncoding($encoding)
     {
@@ -310,10 +310,10 @@ class HttpClient
     /**
      * Enables the use of a proxy.
      *
-     * @param string $proxy The proxy to use. Use "@" to separate credentials and address.
-     * @param int $type The type of proxy. This can be one of: HttpClient::PROXY_HTTP (default), HttpClient::PROXY_SOCKS5.
+     * @param string $proxy The proxy to use. Use `@` to separate credentials and address.
+     * @param int $type The type of proxy. This can be one of: `HttpClient::PROXY_HTTP` (default), `HttpClient::PROXY_SOCKS5`.
      * @param int $auth The HTTP authentication method(s) to use for the proxy connection.
-     *   This can be one of: HttpClient::AUTH_BASIC (default), HttpClient::AUTH_NTLM.
+     *   This can be one of: `HttpClient::AUTH_BASIC` (default), `HttpClient::AUTH_NTLM`.
      * @throws \InvalidArgumentException if the given parameter is invalid.
      */
     public function useProxy($proxy, $type = self::PROXY_HTTP, $auth = self::AUTH_BASIC)
@@ -338,7 +338,7 @@ class HttpClient
     }
 
     /**
-     * Executes a request.
+     * Really executes a request to the given URL.
      *
      * @param string $url The URL to fetch
      * @param array $headers Optional extra headers

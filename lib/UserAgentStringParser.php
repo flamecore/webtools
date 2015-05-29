@@ -64,7 +64,7 @@ class UserAgentStringParser
     }
 
     /**
-     * Make user agent string lowercase, and replace browser aliases.
+     * Cleans the user agent string.
      *
      * @param string $string The dirty user agent string
      * @return string Returns the clean user agent string.
