@@ -32,5 +32,8 @@
         "psr-4": {
             "FlameCore\\Webtools\\Tests\\": "tests/"
         }
+    },
+    "scripts": {
+        "test": "phpunit"
     }
 }
