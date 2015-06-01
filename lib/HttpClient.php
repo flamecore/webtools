@@ -83,6 +83,11 @@ class HttpClient
     {
         $this->handle = curl_init();
 
+        curl_setopt($this->handle, CURLOPT_HEADER, false);
+        curl_setopt($this->handle, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($this->handle, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($this->handle, CURLOPT_HEADERFUNCTION, [$this, 'buffer']);
+
         $this->headers = array(
             'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Charset' => 'UTF-8',
@@ -110,7 +115,6 @@ class HttpClient
      */
     public function get($url, array $headers = array())
     {
-        curl_reset($this->handle);
         curl_setopt($this->handle, CURLOPT_HTTPGET, true);
 
         return $this->execute($url, $headers);
@@ -126,7 +130,6 @@ class HttpClient
      */
     public function post($url, $data, array $headers = array())
     {
-        curl_reset($this->handle);
         curl_setopt($this->handle, CURLOPT_POST, true);
         curl_setopt($this->handle, CURLOPT_POSTFIELDS, $data);
 
@@ -360,11 +363,6 @@ class HttpClient
         }
 
         curl_setopt($this->handle, CURLOPT_HTTPHEADER, $curlheaders);
-
-        curl_setopt($this->handle, CURLOPT_HEADER, false);
-        curl_setopt($this->handle, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($this->handle, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($this->handle, CURLOPT_HEADERFUNCTION, [$this, 'buffer']);
 
         $response = curl_exec($this->handle);
         if ($response !== false) {
