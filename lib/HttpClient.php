@@ -146,7 +146,6 @@ class HttpClient
      */
     public function put($url, $data, array $headers = array())
     {
-        curl_reset($this->handle);
         curl_setopt($this->handle, CURLOPT_CUSTOMREQUEST, 'PUT');
 
         $fields = is_array($data) ? http_build_query($data) : $data;
@@ -172,7 +171,6 @@ class HttpClient
             throw new \LogicException(sprintf('File "%s" could not be opened.', $file));
         }
 
-        curl_reset($this->handle);
         curl_setopt($this->handle, CURLOPT_PUT, true);
         curl_setopt($this->handle, CURLOPT_INFILE, $file);
         curl_setopt($this->handle, CURLOPT_INFILESIZE, filesize($file));
@@ -190,7 +188,6 @@ class HttpClient
      */
     public function request($method, $url, array $headers = array())
     {
-        curl_reset($this->handle);
         curl_setopt($this->handle, CURLOPT_CUSTOMREQUEST, $method);
 
         return $this->execute($url, $headers);
