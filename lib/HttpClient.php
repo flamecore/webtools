@@ -183,12 +183,17 @@ class HttpClient
      *
      * @param string $method The custom request method verb
      * @param string $url The URL to make the request to
+     * @param array|string $data The data to post in the operation (optional)
      * @param array $headers Optional extra headers
      * @return object Returns an object containing the response information.
      */
-    public function request($method, $url, array $headers = array())
+    public function request($method, $url, $data = null, array $headers = array())
     {
         curl_setopt($this->handle, CURLOPT_CUSTOMREQUEST, $method);
+
+        if (!empty($data)) {
+            curl_setopt($this->handle, CURLOPT_POSTFIELDS, $data);
+        }
 
         return $this->execute($url, $headers);
     }
