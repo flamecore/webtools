@@ -30,10 +30,10 @@ namespace FlameCore\Webtools;
  */
 class HttpClient
 {
-    const ENCODING_IDENTITY = 'identity';
-    const ENCODING_DEFLATE = 'deflate';
-    const ENCODING_GZIP = 'gzip';
     const ENCODING_ALL = '';
+    const ENCODING_GZIP = 'gzip';
+    const ENCODING_DEFLATE = 'deflate';
+    const ENCODING_IDENTITY = 'identity';
 
     const AUTH_BASIC = CURLAUTH_BASIC;
     const AUTH_NTLM = CURLAUTH_NTLM;
