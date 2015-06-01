@@ -110,7 +110,6 @@ class HttpClient
      */
     public function get($url, array $headers = array())
     {
-        curl_reset($this->handle);
         curl_setopt($this->handle, CURLOPT_HTTPGET, true);
 
         return $this->execute($url, $headers);
@@ -126,7 +125,6 @@ class HttpClient
      */
     public function post($url, $data, array $headers = array())
     {
-        curl_reset($this->handle);
         curl_setopt($this->handle, CURLOPT_POST, true);
         curl_setopt($this->handle, CURLOPT_POSTFIELDS, $data);
 
