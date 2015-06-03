@@ -190,7 +190,7 @@ class HttpClient
      */
     public function request($method, $url, $data = null, array $headers = array())
     {
-        curl_setopt($this->handle, CURLOPT_CUSTOMREQUEST, $method);
+        curl_setopt($this->handle, CURLOPT_CUSTOMREQUEST, strtoupper($method));
 
         if (!empty($data)) {
             curl_setopt($this->handle, CURLOPT_POSTFIELDS, $data);
