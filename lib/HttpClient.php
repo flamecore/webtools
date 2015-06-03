@@ -92,9 +92,7 @@ class HttpClient
 
         $this->headers = array(
             'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'Accept-Charset' => 'UTF-8',
-            'Connection' => 'Keep-Alive',
-            'Content-Type' => 'application/x-www-form-urlencoded; charset=UTF-8'
+            'Connection' => 'Keep-Alive'
         );
 
         if ($useragent !== null) {
