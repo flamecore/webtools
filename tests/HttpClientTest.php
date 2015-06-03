@@ -106,6 +106,24 @@ class HttpClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Mozilla/5.0 (compatible; FlameCore Webtools/1.2)', $info->headers->{'User-Agent'});
     }
 
+    public function testRequestWithData()
+    {
+        $result = $this->http->request('PATCH', 'http://httpbin.org/patch', ['foo' => 'bar']);
+
+        $info = $this->examineResult($result);
+
+        $this->assertEquals(['foo' => 'bar'], (array) $info->form);
+    }
+
+    public function testRequestWithoutData()
+    {
+        $result = $this->http->request('DELETE', 'http://httpbin.org/delete');
+
+        $info = $this->examineResult($result);
+
+        $this->assertEmpty((array) $info->form);
+    }
+
     public function testSetHeader()
     {
         $http = new HttpClient();
@@ -124,14 +142,21 @@ class HttpClientTest extends \PHPUnit_Framework_TestCase
     public function testSetHeaders()
     {
         $http = new HttpClient();
-        $http->setHeaders(['X-Bar' => 'baz']);
+        $http->setHeaders(['X-Foo' => 'bar']);
 
-        $result = $http->get('http://httpbin.org/headers');
+        $result = $http->get('http://httpbin.org/headers', ['X-Bar' => 'baz']);
 
         $info = $this->examineResult($result);
 
+        // ->getHeaders()
         $this->assertInternalType('array', $http->getHeaders());
-        $this->assertArrayHasKey('X-Bar', $http->getHeaders());
+        $this->assertArrayHasKey('X-Foo', $http->getHeaders());
+
+        // Headers set by ->setHeaders()
+        $this->assertObjectHasAttribute('X-Foo', $info->headers);
+        $this->assertEquals('bar', $info->headers->{'X-Foo'});
+
+        // Headers set by extra
         $this->assertObjectHasAttribute('X-Bar', $info->headers);
         $this->assertEquals('baz', $info->headers->{'X-Bar'});
     }
