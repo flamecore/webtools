@@ -173,7 +173,8 @@ class UserAgentStringParser
             'yahoobot',
             'yandex\w+',
             'baiduspider\w*',
-            'facebookbot'
+            'facebookbot',
+            'flamecore[ -]\w+'
         );
     }
 
@@ -313,6 +314,12 @@ class UserAgentStringParser
         // Baidu Bot
         if (substr($userAgent['browser_name'], 0, 11) == 'baiduspider') {
             $userAgent['browser_name'] = 'baidubot';
+            return $userAgent;
+        }
+
+        // FlameCore
+        if (substr($userAgent['browser_name'], 0, 9) == 'flamecore') {
+            $userAgent['browser_name'] = 'flamecore-'.substr($userAgent['browser_name'], 10);
             return $userAgent;
         }
 

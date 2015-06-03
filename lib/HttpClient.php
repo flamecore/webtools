@@ -297,13 +297,13 @@ class HttpClient
     /**
      * Enables the use of cookies.
      *
-     * @param string $jarfile The full path to the file where cookies are saved
+     * @param string $jarfile The full path to the file where cookies are saved (optional)
      * @throws \InvalidArgumentException if the given parameter is invalid.
      * @throws \LogicException if the cookie file could not be opened.
      */
-    public function acceptCookies($jarfile = '/tmp/cookies.txt')
+    public function acceptCookies($jarfile = null)
     {
-        $jarfile = (string) $jarfile;
+        $jarfile = $jarfile ? (string) $jarfile : sys_get_temp_dir().DIRECTORY_SEPARATOR.'cookies.txt';
 
         if (!is_file($jarfile) && !touch($jarfile)) {
             throw new \LogicException(sprintf('Cookie file "%s" could not be opened. Make sure that the directory is writable.', $jarfile));
