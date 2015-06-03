@@ -119,6 +119,16 @@ class HttpClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('gzip', $info->headers->{'Accept-Encoding'});
     }
 
+    public function testAcceptCookies()
+    {
+        $this->http->acceptCookies();
+        $result = $this->http->get('http://httpbin.org/cookies/set?foo=bar');
+
+        $info = $this->examineResult($result);
+
+        $this->assertEquals(['foo' => 'bar'], (array) $info->cookies);
+    }
+
     public function testError()
     {
         $http = new HttpClient();
