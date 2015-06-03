@@ -44,6 +44,49 @@ class HttpClientTest extends \PHPUnit_Framework_TestCase
         $this->http = new HttpClient();
     }
 
+    public function testPutFileHandle()
+    {
+        $result = $this->http->putFile('http://httpbin.org/put', fopen(__FILE__, 'r'));
+
+        $info = $this->examineResult($result);
+
+        $this->assertEquals(file_get_contents(__FILE__), $info->data);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testPutFileHandleException()
+    {
+        $this->http->putFile('http://httpbin.org/put', curl_init());
+    }
+
+    public function testPutFile()
+    {
+        $result = $this->http->putFile('http://httpbin.org/put', __FILE__);
+
+        $info = $this->examineResult($result);
+
+        $this->assertEquals(file_get_contents(__FILE__), $info->data);
+    }
+
+    /**
+     * @expectedException \LogicException
+     */
+    public function testPutFileException()
+    {
+        $this->http->putFile('http://httpbin.org/put', 'foo.txt');
+    }
+
+    public function testPut()
+    {
+        $result = $this->http->put('http://httpbin.org/put', ['foo' => 'bar']);
+
+        $info = $this->examineResult($result);
+
+        $this->assertEquals(['foo' => 'bar'], (array) $info->form);
+    }
+
     public function testPost()
     {
         $result = $this->http->post('http://httpbin.org/post', 'foo=bar');
@@ -96,7 +139,7 @@ class HttpClientTest extends \PHPUnit_Framework_TestCase
     public function testSetUserAgent()
     {
         $uastring = 'TestUA/1.0 (fake; FlameCore Webtools/1.2)';
-        $http = new HttpClient();
+        $http = new HttpClient($uastring);
         $http->setUserAgent($uastring);
 
         $result = $http->get('http://httpbin.org/user-agent');
