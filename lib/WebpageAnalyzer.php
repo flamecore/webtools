@@ -71,16 +71,17 @@ class WebpageAnalyzer
      * Creates a WebpageAnalyzer object.
      *
      * @param string $url The URL of the webpage
+     * @param \FlameCore\Webtools\HttpClient $http The HttpClient instance to use (optional)
      * @throws \RuntimeException if the URL could not be loaded.
      */
-    public function __construct($url)
+    public function __construct($url, HttpClient $http = null)
     {
         $this->url = $url;
 
         $this->baseUrl = preg_replace('#^(https?://[^/]+)#', '\1', $this->url);
         $this->localUrl = preg_replace('#^(https?://.+)/.+#', '\1', $this->url);
 
-        $http = new HttpClient();
+        $http = $http ?: new HttpClient();
         $html = HtmlExplorer::fromWeb($url, $http);
 
         $node = $html->findFirstTag('base');
