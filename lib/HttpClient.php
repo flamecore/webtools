@@ -159,21 +159,18 @@ class HttpClient
      * Executes a PUT request using a file.
      *
      * @param string $url The URL to make the request to
-     * @param string $file The file that the transfer should be read from when uploading
+     * @param string|resource $file The file that the transfer should be read from when uploading
      * @param array $headers Optional extra headers
      * @return object Returns an object containing the response information.
      */
     public function putFile($url, $file, array $headers = array())
     {
-        $file = (string) $file;
-
-        if (!is_file($file)) {
-            throw new \LogicException(sprintf('File "%s" could not be opened.', $file));
-        }
+        $file = $this->openFile($file);
+        $stat = fstat($file);
 
         curl_setopt($this->handle, CURLOPT_PUT, true);
         curl_setopt($this->handle, CURLOPT_INFILE, $file);
-        curl_setopt($this->handle, CURLOPT_INFILESIZE, filesize($file));
+        curl_setopt($this->handle, CURLOPT_INFILESIZE, $stat['size']);
 
         return $this->execute($url, $headers);
     }
@@ -412,6 +409,31 @@ class HttpClient
         }
 
         return $headers;
+    }
+
+    /**
+     * Opens a file handle.
+     *
+     * @param string|resource $file The file to open
+     * @return resource
+     */
+    private function openFile($file)
+    {
+        if (is_resource($file)) {
+            if (get_resource_type($file) !== 'stream') {
+                throw new \InvalidArgumentException('The given resource is not a file handle.');
+            }
+        } else {
+            $filename = (string) $file;
+
+            if (!is_file($filename) || !is_readable($filename)) {
+                throw new \LogicException(sprintf('File "%s" could not be opened.', $filename));
+            }
+
+            $file = fopen($filename, 'r');
+        }
+
+        return $file;
     }
 
     /**
