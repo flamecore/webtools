@@ -195,6 +195,10 @@ class UserAgentStringParserTest extends \PHPUnit_Framework_TestCase
             'Feedfetcher-Google; (+http://www.google.com/feedfetcher.html; 2 subscribers; feed-id=6924676383167400434)'
             => array(null, null, null, null),
 
+            // FlameCore
+            'Mozilla/5.0 (compatible; FlameCore Webtools/1.2)'
+            => array('flamecore-webtools', '1.2', null, null),
+
             // Speedy Spider
             'Speedy Spider (http://www.entireweb.com/about/search_tech/speedy_spider/)'
             => array(null, null, null, null)
