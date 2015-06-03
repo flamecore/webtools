@@ -78,8 +78,10 @@ class HttpClient
 
     /**
      * Creates a HttpClient object.
+     *
+     * @param string $useragent The user agent string (optional)
      */
-    public function __construct()
+    public function __construct($useragent = null)
     {
         $this->handle = curl_init();
 
@@ -94,6 +96,10 @@ class HttpClient
             'Connection' => 'Keep-Alive',
             'Content-Type' => 'application/x-www-form-urlencoded; charset=UTF-8'
         );
+
+        if ($useragent !== null) {
+            $this->setUserAgent($useragent);
+        }
     }
 
     /**
