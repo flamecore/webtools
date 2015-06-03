@@ -22,6 +22,8 @@ The Rules
 
 * Please check your code for typos and spelling mistakes before committing!
 
+* If you introduce a significant code change, always run the tests.
+
 
 Coding Standard
 ---------------
