@@ -53,7 +53,7 @@ class HttpClient
      *
      * @var string
      */
-    protected $useragent = 'Mozilla/5.0 (compatible; FlameCore-HttpClient/0.1)';
+    protected $useragent = 'Mozilla/5.0 (compatible; FlameCore Webtools/1.0)';
 
     /**
      * The timeout in seconds
