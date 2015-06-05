@@ -84,8 +84,9 @@ class WebpageAnalyzer
         $html = HtmlExplorer::fromWeb($url, $http);
 
         $node = $html->findFirstTag('base');
-        if ($node && $href = $node->getAttribute('href'))
+        if ($node && $href = $node->getAttribute('href')) {
             $this->baseUrl = trim($href, ' /');
+        }
 
         $this->http = $http;
         $this->html = $html;
@@ -111,8 +112,9 @@ class WebpageAnalyzer
     {
         $nodes = $this->html->findTags('meta');
         foreach ($nodes as $node) {
-            if (strtolower($node->getAttribute('name')) == 'description')
+            if (strtolower($node->getAttribute('name')) == 'description') {
                 return trim($node->getAttribute('content'));
+            }
         }
 
         return null;
@@ -131,8 +133,9 @@ class WebpageAnalyzer
         foreach ($nodes as $node) {
             $source = trim($node->getAttribute('src'));
 
-            if (empty($source))
+            if (empty($source)) {
                 continue;
+            }
 
             $url = $this->getAbsoluteUrl($source);
 
@@ -184,8 +187,9 @@ class WebpageAnalyzer
             'Range' => 'bytes=0-32768'
         ]);
 
-        if (!$request->success)
+        if (!$request->success) {
             return false;
+        }
 
         $image = imageCreateFromString($request->data);
 

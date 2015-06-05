@@ -50,8 +50,10 @@ class HtmlExplorer
         $success = $dom->loadHTML($html);
 
         if (!$success) {
-            $error = array_shift(libxml_get_errors());
-            throw new \RuntimeException(sprintf('Could not load HTML: %s at line %d column %d.', trim($error->message), $error->line, $error->column));
+            $errors = libxml_get_errors();
+            $lastError = array_shift($errors);
+
+            throw new \RuntimeException(sprintf('Could not load HTML: %s at line %d column %d.', trim($lastError->message), $lastError->line, $lastError->column));
         }
 
         $this->dom = $dom;
@@ -116,8 +118,9 @@ class HtmlExplorer
 
         $request = $http->get($url);
 
-        if (!$request->success)
+        if (!$request->success) {
             throw new \RuntimeException(sprintf('The URL "%s" could not be loaded.', $url));
+        }
 
         return new self($request->data);
     }
@@ -131,8 +134,9 @@ class HtmlExplorer
      */
     public static function fromFile($filename)
     {
-        if (!is_file($filename) || !is_readable($filename))
+        if (!is_file($filename) || !is_readable($filename)) {
             throw new \LogicException(sprintf('The file "%s" does not exist or is not readable.', $filename));
+        }
 
         $html = file_get_contents($filename);
 
