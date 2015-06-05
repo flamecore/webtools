@@ -30,10 +30,10 @@ namespace FlameCore\Webtools;
  */
 class HttpClient
 {
-    const ENCODING_IDENTITY = 'identity';
-    const ENCODING_DEFLATE = 'deflate';
-    const ENCODING_GZIP = 'gzip';
     const ENCODING_ALL = '';
+    const ENCODING_GZIP = 'gzip';
+    const ENCODING_DEFLATE = 'deflate';
+    const ENCODING_IDENTITY = 'identity';
 
     const AUTH_BASIC = CURLAUTH_BASIC;
     const AUTH_NTLM = CURLAUTH_NTLM;
@@ -78,8 +78,6 @@ class HttpClient
 
     /**
      * Creates a HttpClient object.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -221,8 +219,9 @@ class HttpClient
      */
     public function setEncoding($encoding)
     {
-        if (!in_array($encoding, array(self::ENCODING_IDENTITY, self::ENCODING_DEFLATE, self::ENCODING_GZIP, self::ENCODING_ALL)))
+        if (!in_array($encoding, array(self::ENCODING_IDENTITY, self::ENCODING_DEFLATE, self::ENCODING_GZIP, self::ENCODING_ALL))) {
             throw new \InvalidArgumentException('The encoding must be one of: HttpClient::ENCODING_IDENTITY, HttpClient::ENCODING_DEFLATE, HttpClient::ENCODING_GZIP, HttpClient::ENCODING_ALL.');
+        }
 
         $this->encoding = $encoding;
     }
@@ -236,11 +235,13 @@ class HttpClient
      */
     public function acceptCookies($jarfile = '/tmp/cookies.txt')
     {
-        if (!is_string($jarfile) || empty($jarfile))
+        if (!is_string($jarfile) || empty($jarfile)) {
             throw new \InvalidArgumentException('The $jarfile parameter must be a non-empty string.');
+        }
 
-        if (!file_exists($jarfile) && !touch($jarfile))
+        if (!file_exists($jarfile) && !touch($jarfile)) {
             throw new \LogicException(sprintf('Cookie file "%s" could not be opened. Make sure that the directory is writable.', $jarfile));
+        }
 
         curl_setopt($this->handle, CURLOPT_COOKIEFILE, $jarfile);
         curl_setopt($this->handle, CURLOPT_COOKIEJAR, $jarfile);
@@ -257,14 +258,17 @@ class HttpClient
      */
     public function useProxy($proxy, $type = self::PROXY_HTTP, $auth = self::AUTH_BASIC)
     {
-        if (!is_string($proxy) || empty($proxy))
+        if (!is_string($proxy) || empty($proxy)) {
             throw new \InvalidArgumentException('The $proxy parameter must be a non-empty string.');
+        }
 
-        if (!in_array($type, array(self::PROXY_HTTP, self::PROXY_SOCKS5)))
+        if (!in_array($type, array(self::PROXY_HTTP, self::PROXY_SOCKS5))) {
             throw new \InvalidArgumentException('The $type parameter must be one of: HttpClient::PROXY_HTTP, HttpClient::PROXY_SOCKS5.');
+        }
 
-        if (!in_array($auth, array(self::AUTH_BASIC, self::AUTH_NTLM)))
+        if (!in_array($auth, array(self::AUTH_BASIC, self::AUTH_NTLM))) {
             throw new \InvalidArgumentException('The $auth parameter must be one of: HttpClient::AUTH_BASIC, HttpClient::AUTH_NTLM.');
+        }
 
         if (strpos($proxy, '@') !== false) {
             list($proxyCredentials, $proxyAddress) = explode('@', $proxy, 2);
@@ -293,8 +297,9 @@ class HttpClient
         $curlheaders = array();
 
         $headers = array_merge($this->headers, $headers);
-        foreach ($headers as $headerName => $headerValue)
+        foreach ($headers as $headerName => $headerValue) {
             $curlheaders[] = "$headerName: $headerValue";
+        }
 
         curl_setopt($this->handle, CURLOPT_HTTPHEADER, $curlheaders);
 
