@@ -309,11 +309,12 @@ class HttpClient
         curl_setopt($this->handle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($this->handle, CURLOPT_FOLLOWLOCATION, true);
 
-        if ($data = curl_exec($this->handle)) {
+        $response = curl_exec($this->handle);
+        if ($response !== false) {
             $info = curl_getinfo($this->handle);
-            if ($info['http_code'] >= 200 && $info['http_code'] < 300) {
+            if ($info && $info['http_code'] >= 200 && $info['http_code'] < 300) {
                 $info['success'] = true;
-                $info['data'] = $data;
+                $info['data'] = $response;
             } else {
                 $info['success'] = false;
             }
