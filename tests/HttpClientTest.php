@@ -60,7 +60,7 @@ class HttpClientTest extends \PHPUnit_Framework_TestCase
         $info = $this->examineResult($result);
 
         $this->assertEquals(['foo' => 'bar'], (array) $info->args);
-        $this->assertEquals('Mozilla/5.0 (compatible; FlameCore Webtools/1.2)', $info->headers->{'User-Agent'});
+        $this->assertEquals('Mozilla/5.0 (compatible; FlameCore Webtools/1.1)', $info->headers->{'User-Agent'});
     }
 
     public function testSetHeader()
@@ -102,7 +102,7 @@ class HttpClientTest extends \PHPUnit_Framework_TestCase
 
     public function testSetUserAgent()
     {
-        $uastring = 'TestUA/1.0 (fake; FlameCore Webtools/1.0)';
+        $uastring = 'TestUA/1.0 (fake; FlameCore Webtools/1.1)';
         $http = new HttpClient();
         $http->setUserAgent($uastring);
 
