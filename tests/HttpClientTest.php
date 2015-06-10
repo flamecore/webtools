@@ -189,8 +189,9 @@ class HttpClientTest extends \PHPUnit_Framework_TestCase
 
     public function testAcceptCookies()
     {
-        $this->http->acceptCookies();
-        $result = $this->http->get('http://httpbin.org/cookies/set?foo=bar');
+        $http = new HttpClient();
+        $http->acceptCookies();
+        $result = $http->get('http://httpbin.org/cookies/set?foo=bar');
 
         $info = $this->examineResult($result);
 
