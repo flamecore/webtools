@@ -16,7 +16,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *
  * @package  FlameCore\Webtools
- * @version  1.2
+ * @version  1.3
  * @link     http://www.flamecore.org
  * @license  ISC License <http://opensource.org/licenses/ISC>
  */
@@ -53,7 +53,7 @@ class HttpClient
      *
      * @var string
      */
-    protected $useragent = 'Mozilla/5.0 (compatible; FlameCore Webtools/1.2)';
+    protected $useragent = 'Mozilla/5.0 (compatible; FlameCore Webtools/1.3)';
 
     /**
      * The timeout in seconds

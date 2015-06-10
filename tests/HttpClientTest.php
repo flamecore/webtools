@@ -16,7 +16,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *
  * @package  FlameCore\Webtools
- * @version  1.2
+ * @version  1.3
  * @link     http://www.flamecore.org
  * @license  ISC License <http://opensource.org/licenses/ISC>
  */
@@ -103,7 +103,7 @@ class HttpClientTest extends \PHPUnit_Framework_TestCase
         $info = $this->examineResult($result);
 
         $this->assertEquals(['foo' => 'bar'], (array) $info->args);
-        $this->assertEquals('Mozilla/5.0 (compatible; FlameCore Webtools/1.2)', $info->headers->{'User-Agent'});
+        $this->assertEquals('Mozilla/5.0 (compatible; FlameCore Webtools/1.3)', $info->headers->{'User-Agent'});
     }
 
     public function testRequestWithData()
@@ -163,7 +163,7 @@ class HttpClientTest extends \PHPUnit_Framework_TestCase
 
     public function testSetUserAgent()
     {
-        $uastring = 'TestUA/1.0 (fake; FlameCore Webtools/1.2)';
+        $uastring = 'TestUA/1.0 (fake; FlameCore Webtools/1.3)';
         $http = new HttpClient($uastring);
         $http->setUserAgent($uastring);
 
