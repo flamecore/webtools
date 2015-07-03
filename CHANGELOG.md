@@ -3,6 +3,12 @@
 All notable changes to the `Webtools` project will be documented in this file.
 
 
+## 1.0.2 - 2015-07-05
+
+### Fixed
+- Bugfixes and improvements
+
+
 ## 1.0.1 - 2015-06-11
 
 ### Fixed
