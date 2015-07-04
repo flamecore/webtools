@@ -56,7 +56,7 @@ class HtmlExplorer
      * Finds an element by ID.
      *
      * @param string $elementId The element ID
-     * @return \DOMElement|bool
+     * @return \DOMElement|false
      */
     public function find($elementId)
     {
@@ -78,7 +78,7 @@ class HtmlExplorer
      * Finds the first element with given tag name.
      *
      * @param string $tagName The tag name
-     * @return \DOMNode|bool
+     * @return \DOMElement|false
      */
     public function findFirstTag($tagName)
     {

@@ -186,7 +186,7 @@ class WebpageAnalyzer
      * Returns the size of an image.
      *
      * @param string $url The URL of the image
-     * @return array|bool Returns an array with width and height of the image or FALSE on error.
+     * @return array|false Returns an array with width and height of the image or FALSE on error.
      */
     protected function getImageSize($url)
     {
