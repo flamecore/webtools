@@ -3,6 +3,12 @@
 All notable changes to the `Webtools` project will be documented in this file.
 
 
+## 1.1.2 - 2015-07-05
+
+### Fixed
+- Bugfixes and improvements
+
+
 ## 1.1.1 - 2015-06-11
 
 ### Fixed
@@ -18,6 +24,12 @@ All notable changes to the `Webtools` project will be documented in this file.
 
 ### Removed
 - Removed compatibility with PHP 5.3; Requires PHP >= 5.4 now
+
+
+## 1.0.2 - 2015-07-05
+
+### Fixed
+- Bugfixes and improvements
 
 
 ## 1.0.1 - 2015-06-11
