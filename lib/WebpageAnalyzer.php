@@ -77,8 +77,8 @@ class WebpageAnalyzer
     {
         $this->url = $url;
 
-        $this->baseUrl = preg_replace('#^(https?://[^/]+)#', '\1', $this->url);
-        $this->localUrl = preg_replace('#^(https?://.+)/.+#', '\1', $this->url);
+        $this->baseUrl = preg_replace('#^(https?://[^/]+).+$#', '\1', $url);
+        $this->localUrl = preg_replace('#^(https?://.+)/[^/]+$#', '\1', $url);
 
         $http = new HttpClient();
         $html = HtmlExplorer::fromWeb($url, $http);
@@ -100,6 +100,7 @@ class WebpageAnalyzer
     public function getTitle()
     {
         $node = $this->html->findFirstTag('title');
+
         return $node ? trim($node->nodeValue) : null;
     }
 
@@ -138,8 +139,8 @@ class WebpageAnalyzer
             }
 
             $url = $this->getAbsoluteUrl($source);
-
             $size = $this->getImageSize($url);
+
             if (is_array($size)) {
                 list($width, $height) = $size;
             } else {
@@ -169,7 +170,7 @@ class WebpageAnalyzer
         if (preg_match('#^(https?|ftps?)://#', $href)) {
             return $href;
         } elseif ($href[0] == '/') {
-            return $this->baseUrl.'/'.$href;
+            return $this->baseUrl.$href;
         } else {
             return $this->localUrl.'/'.$href;
         }
@@ -191,15 +192,6 @@ class WebpageAnalyzer
             return false;
         }
 
-        $image = imageCreateFromString($request->data);
-
-        if ($image) {
-            $width = imagesx($image);
-            $height = imagesy($image);
-
-            return [$width, $height];
-        } else {
-            return false;
-        }
+        return getimagesizefromstring($request->data);
     }
 }

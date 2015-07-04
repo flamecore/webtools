@@ -122,7 +122,7 @@ class HtmlExplorer
             throw new \RuntimeException(sprintf('The URL "%s" could not be loaded.', $url));
         }
 
-        return new self($request->data);
+        return new static($request->data);
     }
 
     /**
@@ -140,6 +140,6 @@ class HtmlExplorer
 
         $html = file_get_contents($filename);
 
-        return new self($html);
+        return new static($html);
     }
 }
