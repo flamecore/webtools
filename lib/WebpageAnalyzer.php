@@ -148,7 +148,7 @@ class WebpageAnalyzer
                 continue;
             }
 
-            if ($width > 299 || $height > 149) {
+            if ($this->isImageAccepted($url, $width, $height)) {
                 $images[] = array(
                     'url'    => $url,
                     'width'  => $width,
@@ -176,6 +176,19 @@ class WebpageAnalyzer
         } else {
             return $this->localUrl.'/'.$href;
         }
+    }
+
+    /**
+     * Returns whether the given image is accepted.
+     *
+     * @param string $url The image URL
+     * @param int $width The image width
+     * @param int $height The image height
+     * @return bool
+     */
+    protected function isImageAccepted($url, $width, $height)
+    {
+        return $width > 299 || $height > 149;
     }
 
     /**
