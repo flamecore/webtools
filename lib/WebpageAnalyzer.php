@@ -71,7 +71,7 @@ class WebpageAnalyzer
      * Creates a WebpageAnalyzer object.
      *
      * @param string $url The URL of the webpage
-     * @param \FlameCore\Webtools\HttpClient $http The HttpClient instance to use (optional)
+     * @param \FlameCore\Webtools\HttpClient $http The HttpClient instance to use
      * @throws \RuntimeException if the URL could not be loaded.
      */
     public function __construct($url, HttpClient $http = null)
@@ -164,6 +164,7 @@ class WebpageAnalyzer
     /**
      * Transforms the given URL to an absolute URL.
      *
+     * @param string $href The relative URL
      * @return string
      */
     protected function getAbsoluteUrl($href)
@@ -181,7 +182,7 @@ class WebpageAnalyzer
      * Returns the size of an image.
      *
      * @param string $url The URL of the image
-     * @return array|bool Returns an array with width and height of the image or FALSE on error.
+     * @return array|false Returns an array with width and height of the image or FALSE on error.
      */
     protected function getImageSize($url)
     {

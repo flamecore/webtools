@@ -79,7 +79,7 @@ class HttpClient
     /**
      * Creates a HttpClient object.
      *
-     * @param string $useragent The user agent string (optional)
+     * @param string $useragent The user agent string
      */
     public function __construct($useragent = null)
     {
@@ -184,7 +184,7 @@ class HttpClient
      *
      * @param string $method The custom request method verb
      * @param string $url The URL to make the request to
-     * @param array|string $data The data to post in the operation (optional)
+     * @param array|string $data The data to post in the operation
      * @param array $headers Optional extra headers
      * @return object Returns an object containing the response information.
      */
@@ -297,7 +297,7 @@ class HttpClient
     /**
      * Enables the use of cookies.
      *
-     * @param string $jarfile The full path to the file where cookies are saved (optional)
+     * @param string $jarfile The full path to the file where cookies are saved
      * @throws \InvalidArgumentException if the given parameter is invalid.
      * @throws \LogicException if the cookie file could not be opened.
      */
