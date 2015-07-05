@@ -105,6 +105,17 @@ class HtmlExplorer
     }
 
     /**
+     * Returns the SimpleXML version of the DOM.
+     *
+     * @param string $class Return an object of the specified class. That class should extend the SimpleXMLElement class.
+     * @return \SimpleXMLElement
+     */
+    public function getSimpleXML($class = null)
+    {
+        return simplexml_import_dom($this->getDOM(), $class);
+    }
+
+    /**
      * Loads HTML from webpage.
      *
      * @param string $url The URL of the webpage
