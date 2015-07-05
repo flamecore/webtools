@@ -63,7 +63,7 @@ class HtmlExplorer
      * Finds an element by ID.
      *
      * @param string $elementId The element ID
-     * @return \DOMElement|bool
+     * @return \DOMElement|false
      */
     public function find($elementId)
     {
@@ -85,7 +85,7 @@ class HtmlExplorer
      * Finds the first element with given tag name.
      *
      * @param string $tagName The tag name
-     * @return \DOMNode|bool
+     * @return \DOMElement|false
      */
     public function findFirstTag($tagName)
     {
@@ -108,8 +108,8 @@ class HtmlExplorer
      * Loads HTML from webpage.
      *
      * @param string $url The URL of the webpage
-     * @param \FlameCore\Webtools\HttpClient $http The HttpClient instance to use (optional)
-     * @return \FlameCore\Webtools\HtmlExplorer
+     * @param \FlameCore\Webtools\HttpClient $http The HttpClient instance to use
+     * @return self
      * @throws \RuntimeException if the URL could not be loaded.
      */
     public static function fromWeb($url, HttpClient $http = null)
@@ -129,7 +129,7 @@ class HtmlExplorer
      * Loads HTML from file.
      *
      * @param string $filename The name of the file
-     * @return \FlameCore\Webtools\HtmlExplorer
+     * @return self
      * @throws \LogicException if the file could not be opened.
      */
     public static function fromFile($filename)

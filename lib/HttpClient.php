@@ -234,7 +234,7 @@ class HttpClient
     /**
      * Enables the use of cookies.
      *
-     * @param string $jarfile The full path to the file where cookies are saved (optional)
+     * @param string $jarfile The full path to the file where cookies are saved
      * @throws \InvalidArgumentException if the given parameter is invalid.
      * @throws \LogicException if the cookie file could not be opened.
      */
