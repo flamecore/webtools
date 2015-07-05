@@ -21,6 +21,12 @@ All notable changes to the `Webtools` project will be documented in this file.
 - Nothing
 
 
+## 1.3.1 - 2015-07-05
+
+### Fixed
+- Bugfixes and improvements
+
+
 ## 1.3.0 - 2015-06-11
 
 ### Added
@@ -30,9 +36,6 @@ All notable changes to the `Webtools` project will be documented in this file.
 - [HttpClient] Allow setting User Agent string in constructor
 - [WebpageAnalyzer] Allow using alternative HttpClient
 
-### Deprecated
-- Nothing
-
 ### Fixed
 - [UserAgent] Improved OS- and browser engine detection
 - [UserAgent] Use precedence to check for UA
@@ -41,11 +44,11 @@ All notable changes to the `Webtools` project will be documented in this file.
 - [HttpClient] Fixed default headers
 - Bugfixes and improvements
 
-### Removed
-- Nothing
 
-### Security
-- Nothing
+## 1.2.7 - 2015-07-05
+
+### Fixed
+- Bugfixes and improvements
 
 
 ## 1.2.6 - 2015-06-03
@@ -105,6 +108,12 @@ All notable changes to the `Webtools` project will be documented in this file.
 - Fixed bugs
 
 
+## 1.1.2 - 2015-07-05
+
+### Fixed
+- Bugfixes and improvements
+
+
 ## 1.1.1 - 2015-06-11
 
 ### Fixed
@@ -120,6 +129,12 @@ All notable changes to the `Webtools` project will be documented in this file.
 
 ### Removed
 - Removed compatibility with PHP 5.3; Requires PHP >= 5.4 now
+
+
+## 1.0.2 - 2015-07-05
+
+### Fixed
+- Bugfixes and improvements
 
 
 ## 1.0.1 - 2015-06-11
