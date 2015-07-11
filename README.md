@@ -9,8 +9,7 @@ FlameCore Webtools
 
 This library provides common tools for working with web resources. The components are designed to be lightweight, fast and easy to use.
 
-The Webtools package was developed for our linkparser framework [Flink](https://github.com/FlameCore/Flink) and the spam-protection
-system [Gatekeeper](https://github.com/FlameCore/Gatekeeper).
+The Webtools package was developed for our linkparser framework [Flink](https://github.com/FlameCore/Flink).
 
 Usage instructions and more information can be found [in our Wiki](https://github.com/FlameCore/Webtools/wiki).
 

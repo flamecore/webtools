@@ -14,7 +14,7 @@
     ],
     "support": {
         "issues": "https://github.com/FlameCore/Webtools/issues",
-        "source": "https://github.com/FlameCore/Webtools"
+        "wiki": "https://github.com/FlameCore/Webtools/wiki"
     },
     "require": {
         "php": ">=5.4"
