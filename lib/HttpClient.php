@@ -1,7 +1,7 @@
 <?php
 /**
- * Webtools Library
- * Copyright (C) 2014 IceFlame.net
+ * FlameCore Webtools
+ * Copyright (C) 2015 IceFlame.net
  *
  * Permission to use, copy, modify, and/or distribute this software for
  * any purpose with or without fee is hereby granted, provided that the
@@ -16,9 +16,9 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *
  * @package  FlameCore\Webtools
- * @version  1.3
+ * @version  2.0
  * @link     http://www.flamecore.org
- * @license  ISC License <http://opensource.org/licenses/ISC>
+ * @license  http://opensource.org/licenses/ISC ISC License
  */
 
 namespace FlameCore\Webtools;
@@ -53,7 +53,7 @@ class HttpClient
      *
      * @var string
      */
-    protected $useragent = 'Mozilla/5.0 (compatible; FlameCore Webtools/1.3)';
+    protected $useragent = 'Mozilla/5.0 (compatible; FlameCore Webtools/2.0)';
 
     /**
      * The timeout in seconds

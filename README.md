@@ -44,7 +44,7 @@ Create a file called `composer.json` in your project directory and put the follo
 ```
 {
     "require": {
-        "flamecore/webtools": "1.3.*"
+        "flamecore/webtools": "2.0.*"
     }
 }
 ```

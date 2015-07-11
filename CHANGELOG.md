@@ -21,6 +21,20 @@ All notable changes to the `Webtools` project will be documented in this file.
 - Nothing
 
 
+## 2.0.0 - YYYY-MM-DD
+
+### Added
+- Added class OEmbed
+- [WebpageAnalyzer] Added method isImageAccepted()
+- [HtmlExplorer] Added method getSimpleXML()
+
+### Fixed
+- Bugfixes
+
+### Removed
+- Moved UserAgent component to external project
+
+
 ## 1.3.1 - 2015-07-05
 
 ### Fixed

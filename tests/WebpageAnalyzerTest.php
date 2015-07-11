@@ -1,6 +1,6 @@
 <?php
 /**
- * Webtools Library
+ * FlameCore Webtools
  * Copyright (C) 2015 IceFlame.net
  *
  * Permission to use, copy, modify, and/or distribute this software for
@@ -16,7 +16,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *
  * @package  FlameCore\Webtools
- * @version  1.3
+ * @version  2.0
  * @link     http://www.flamecore.org
  * @license  http://opensource.org/licenses/ISC ISC License
  */
