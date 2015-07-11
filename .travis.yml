@@ -18,6 +18,9 @@ before_install:
 install:
   - composer install --prefer-source
 
+before_script:
+  - php -S localhost:8000 -t tests/web/
+
 script: phpunit --coverage-text --coverage-clover=coverage.clover
 
 after_script:

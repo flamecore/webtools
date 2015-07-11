@@ -1,0 +1,17 @@
+{
+    "type":"photo",
+    "title":"Shiprock",
+    "author_name":"Wayne Pinkston",
+    "author_url":"https:\/\/www.flickr.com\/photos\/pinks2000\/",
+    "width":"240",
+    "height":"93",
+    "url":"https:\/\/farm1.staticflickr.com\/371\/19289053552_f4218f1c7b_m.jpg",
+    "thumbnail_url":"https:\/\/farm1.staticflickr.com\/371\/19289053552_f4218f1c7b_s.jpg",
+    "thumbnail_width":75,
+    "thumbnail_height":75,
+    "html":"<a data-flickr-embed=\"true\" href=\"https:\/\/www.flickr.com\/photos\/pinks2000\/19289053552\/\" title=\"Shiprock by Wayne Pinkston, on Flickr\"><img src=\"https:\/\/farm1.staticflickr.com\/371\/19289053552_f4218f1c7b_m.jpg\" width=\"240\" height=\"93\" alt=\"Shiprock\"><\/a><script async src=\"\/\/widgets.flickr.com\/embedr\/embedr.js\" charset=\"utf-8\"><\/script>",
+    "version":"1.0",
+    "cache_age":3600,
+    "provider_name":"Flickr",
+    "provider_url":"https:\/\/www.flickr.com\/"
+}
