@@ -28,6 +28,8 @@ after_script:
   - php vendor/bin/test-reporter --coverage-report=coverage.clover --stdout > codeclimate.json
   - "curl -X POST -d @codeclimate.json -H 'Content-Type: application/json' -H 'User-Agent: Code Climate (PHP Test Reporter v0.1.1)' https://codeclimate.com/test_reports"
 
+sudo: false
+
 addons:
   code_climate:
     repo_token: 9179481fd917b2cf1463a145a9cbdbe46c9943b607cc902c5d27afa8cb4ee891
