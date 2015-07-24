@@ -32,17 +32,17 @@ class WebpageAnalyzerTest extends \PHPUnit_Framework_TestCase
 {
     public function test()
     {
-        $analyzer = new WebpageAnalyzer('http://www.sueddeutsche.de/digital/news-zu-games-konsolen-und-apps-computer-baut-eigenstaendig-super-mario-levels-nach-1.2081489');
+        $analyzer = new WebpageAnalyzer('http://localhost:8000/test.html');
 
-        $this->assertEquals('Games-News: Computer baut allein "Super Mario" nach - Digital - Süddeutsche.de', $analyzer->getTitle());
-        $this->assertEquals('Ein Programm sieht "Let\'s Play"-Videos und entwickelt das Game weiter', $analyzer->getDescription());
+        $this->assertEquals('Test Page', $analyzer->getTitle());
+        $this->assertEquals('This is a test page.', $analyzer->getDescription());
 
         $expected = array(
             array(
-                'url' => 'http://polpix.sueddeutsche.com/polopoly_fs/1.2537021.1435215668!/httpImage/image.jpg_gen/derivatives/640x360/image.jpg',
-                'width' => 411,
-                'height' => 359,
-                'area' => 147549,
+                'url' => 'http://localhost:8000/img.png',
+                'width' => 422,
+                'height' => 343,
+                'area' => 144746,
             )
         );
 

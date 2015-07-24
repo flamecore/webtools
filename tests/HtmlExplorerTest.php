@@ -89,4 +89,18 @@ HTML;
 
         $this->assertInstanceOf('SimpleXMLElement', $result);
     }
+
+    public function testFromWeb()
+    {
+        $result = HtmlExplorer::fromWeb('http://localhost:8000/test.html');
+
+        $this->assertInstanceOf('FlameCore\Webtools\HtmlExplorer', $result);
+    }
+
+    public function testFromFile()
+    {
+        $result = HtmlExplorer::fromFile(__DIR__.'/web/test.html');
+
+        $this->assertInstanceOf('FlameCore\Webtools\HtmlExplorer', $result);
+    }
 }
