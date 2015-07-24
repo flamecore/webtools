@@ -62,7 +62,7 @@ class OEmbedTest extends \PHPUnit_Framework_TestCase
             'provider_url' => 'https://www.flickr.com/',
         );
 
-        $result = $this->oembed->discover('http://localhost:8000/discover.html');
+        $result = $this->oembed->discover('http://localhost:8000/oembed/discover.html');
 
         $this->assertInstanceOf('stdClass', $result);
         $this->assertEquals($expected, (array) $result);
@@ -86,7 +86,7 @@ class OEmbedTest extends \PHPUnit_Framework_TestCase
             'height' => 169,
         );
 
-        $result = $this->oembed->fetch('https://www.youtube.com/watch?v=qbtbZUmljDI', 'http://localhost:8000/youtube.json');
+        $result = $this->oembed->fetch('https://www.youtube.com/watch?v=qbtbZUmljDI', 'http://localhost:8000/oembed/youtube.json');
 
         $this->assertInstanceOf('stdClass', $result);
         $this->assertEquals($expected, (array) $result);
@@ -95,10 +95,10 @@ class OEmbedTest extends \PHPUnit_Framework_TestCase
     public function testGetHtml()
     {
         $expected = '<img src="https://farm1.staticflickr.com/371/19289053552_f4218f1c7b_m.jpg" alt="Shiprock" title="Shiprock" width="240" height="93" />';
-        $this->assertEquals($expected, $this->oembed->getHtml('http://localhost:8000/discover.html'));
+        $this->assertEquals($expected, $this->oembed->getHtml('http://localhost:8000/oembed/discover.html'));
 
         $expected = '<iframe width="300" height="169" src="https://www.youtube.com/embed/qbtbZUmljDI?feature=oembed" frameborder="0" allowfullscreen></iframe>';
-        $this->assertEquals($expected, $this->oembed->getHtml('https://www.youtube.com/watch?v=qbtbZUmljDI', 'http://localhost:8000/youtube.json'));
+        $this->assertEquals($expected, $this->oembed->getHtml('https://www.youtube.com/watch?v=qbtbZUmljDI', 'http://localhost:8000/oembed/youtube.json'));
     }
 
     public function testToHtml()
