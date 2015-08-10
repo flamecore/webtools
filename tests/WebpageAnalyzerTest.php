@@ -37,7 +37,7 @@ class WebpageAnalyzerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Test Page', $analyzer->getTitle());
         $this->assertEquals('This is a test page.', $analyzer->getDescription());
 
-        $expected = array(
+        $expected = array_fill(0, 2,
             array(
                 'url' => 'http://localhost:8000/img.png',
                 'width' => 422,
