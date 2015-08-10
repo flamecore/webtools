@@ -171,6 +171,8 @@ class WebpageAnalyzer
     {
         if (preg_match('#^(https?|ftps?)://#', $href)) {
             return $href;
+        } elseif (substr($href, 0, 2) == '//') {
+            return parse_url($this->baseUrl, PHP_URL_SCHEME).':'.$href;
         } elseif ($href[0] == '/') {
             return $this->baseUrl.$href;
         } else {
