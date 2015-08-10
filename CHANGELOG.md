@@ -12,7 +12,7 @@ All notable changes to the `Webtools` project will be documented in this file.
 - Nothing
 
 ### Fixed
-- Nothing
+- [WebpageAnalyzer] Accept URLs beginning with '//' in getAbsoluteUrl()
 
 ### Removed
 - Nothing
@@ -21,7 +21,7 @@ All notable changes to the `Webtools` project will be documented in this file.
 - Nothing
 
 
-## 2.0.0 - YYYY-MM-DD
+## 2.0.0 - 2015-07-22
 
 ### Added
 - Added class OEmbed
