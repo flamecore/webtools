@@ -12,13 +12,19 @@ All notable changes to the `Webtools` project will be documented in this file.
 - Nothing
 
 ### Fixed
-- [WebpageAnalyzer] Accept URLs beginning with '//' in getAbsoluteUrl()
+- Nothing
 
 ### Removed
 - Nothing
 
 ### Security
 - Nothing
+
+
+## 2.0.1 - 2015-08-10
+
+### Fixed
+- [WebpageAnalyzer] Accept URLs beginning with '//' in getAbsoluteUrl()
 
 
 ## 2.0.0 - 2015-07-22
